@@ -1,0 +1,32 @@
+<script>if(typeof navigateTo==='undefined'){window.location.replace('policy-owner.html');}</script>
+<div class="back-bar">
+  <a class="back-btn" href="policy-owner.html" onclick="event.preventDefault();navigateTo('policy-owner.html');">
+    <div style="width:24px;height:24px;overflow:hidden;position:relative;flex-shrink:0;">
+      <div style="position:absolute;inset:16.67%;">
+        <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/54153925-8d30-453b-835c-430c5c5d1674.svg"/>
+      </div>
+    </div>
+    <span>Back</span>
+  </a>
+</div>
+<div class="card">
+  <h1 class="card-title">Intended policy owner details</h1>
+  <div class="field">
+    <label class="field-label" for="email">Email address</label>
+    <div class="email-input-wrap">
+      <div class="email-icon" style="width:20px;height:20px;overflow:hidden;position:absolute;left:14px;top:50%;transform:translateY(-50%);flex-shrink:0;">
+        <div style="position:absolute;inset:16.67% 8.33%;">
+          <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/b8f31a4a-bb24-4d1e-bacc-4f1a27f5cb59.svg"/>
+        </div>
+      </div>
+      <input class="text-input" id="email" type="email" placeholder="abc@email.com" autocomplete="email"/>
+    </div>
+  </div>
+</div>
+<div class="card" style="gap:16px;">
+  <div>
+    <p style="font-weight:500;font-size:16px;line-height:24px;color:#272727;margin-bottom:4px;">Read this to your client:</p>
+    <p style="font-size:16px;line-height:24px;color:#272727;">Do you allow Ethos Technologies to pull biographical data on you and to send you text messages to proceed with your application?</p>
+  </div>
+  <button class="btn-continue" id="btn-step2-continue">Continue</button>
+</div>

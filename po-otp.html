@@ -1,0 +1,53 @@
+<script>if(typeof navigateTo==='undefined'){window.location.replace('policy-owner.html');}</script>
+<div class="back-bar">
+  <a class="back-btn" href="po-mobile.html" onclick="event.preventDefault();navigateTo('po-mobile.html');">
+    <div style="width:24px;height:24px;overflow:hidden;position:relative;flex-shrink:0;">
+      <div style="position:absolute;inset:16.67%;">
+        <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/b951e77b-f048-4cc8-b7a5-4051d2457f8b.svg"/>
+      </div>
+    </div>
+    <span>Back</span>
+  </a>
+</div>
+<div class="card" style="gap:24px;">
+  <div>
+    <h2 class="card-title" style="margin-bottom:8px;">Enter the code sent to your client</h2>
+    <p style="font-size:18px;line-height:28px;color:#272727;">We sent a verification code and disclosures to your client's mobile: <span id="otp-mobile-number">***-**-9999</span>. Enter the code to complete their e-signature.</p>
+  </div>
+  <div class="otp-inputs" id="otp-inputs">
+    <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+    <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+    <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+    <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+    <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+    <input class="otp-box" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]"/>
+  </div>
+  <div class="info-bar" style="background:#f5f8fc;border-color:#cfdef5;padding:16px;">
+    <p style="color:#336cc3;font-size:16px;line-height:24px;">Code sent to your client's mobile: <span id="otp-mobile-number-2">***-**-9999</span></p>
+  </div>
+  <div class="otp-footer">
+    <a href="#" class="otp-resend" style="color:#056257;font-size:16px;text-decoration:underline;">Request a new code</a>
+    <div class="otp-timer">
+      <div style="width:20px;height:20px;overflow:hidden;position:relative;flex-shrink:0;">
+        <div style="position:absolute;inset:7.94% 8.57%;">
+          <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/05fd9c12-2359-4100-85cc-6876b6b3c827.svg"/>
+        </div>
+      </div>
+      <span id="otp-countdown" style="font-size:16px;color:#525252;">Your code will expire in 4:59</span>
+    </div>
+  </div>
+  <hr style="border:none;border-top:1px solid #e9e9e9;margin:0;"/>
+  <div class="disclosure-accordion" id="disclosure-accordion">
+    <div class="disclosure-header" id="disclosure-toggle">
+      <span style="font-weight:500;font-size:16px;">Disclosures shared with the client</span>
+      <div id="disclosure-chevron" style="width:24px;height:24px;overflow:hidden;position:relative;flex-shrink:0;transform:rotate(180deg);transition:transform 0.2s;">
+        <div style="position:absolute;top:34.56%;bottom:34.56%;left:25%;right:25%;">
+          <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/c6522f70-ca55-4545-9795-f67057170444.svg"/>
+        </div>
+      </div>
+    </div>
+    <div class="disclosure-body" id="disclosure-body" style="display:none;padding-top:12px;font-size:15px;line-height:24px;color:#525252;">
+      By proceeding, your client acknowledges they have received and reviewed all required disclosures and consents to the electronic signature process.
+    </div>
+  </div>
+</div>

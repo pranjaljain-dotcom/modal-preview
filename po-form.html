@@ -1,0 +1,134 @@
+<script>if(typeof navigateTo==='undefined'){window.location.replace('policy-owner.html');}</script>
+<!-- Back button only (progress bar lives in the persistent shell) -->
+<div class="back-bar">
+  <a class="back-btn" href="po-email.html" onclick="event.preventDefault(); navigateTo('po-email.html');" aria-label="Go back">
+    <div style="width:24px;height:24px;overflow:hidden;position:relative;flex-shrink:0;">
+      <div style="position:absolute;inset:16.67%;">
+        <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/65054c7d-733d-4e13-9f13-7083ba4a1537.svg"/>
+      </div>
+    </div>
+    <span>Back</span>
+  </a>
+</div>
+
+<!-- Form card -->
+<div class="card">
+  <h1 class="card-title">Intended policy owner details</h1>
+
+  <!-- Info bar -->
+  <div class="info-bar" role="note">
+    <div class="info-icon-wrap">
+      <div style="width:20px;height:20px;overflow:hidden;position:relative;flex-shrink:0;">
+        <div style="position:absolute;inset:8.33%;">
+          <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/78bd2968-f0e8-42af-9320-130f2488b188.svg"/>
+        </div>
+      </div>
+    </div>
+    <p class="info-text">
+      Your client already has an Ethos profile, so some details can only be updated by contacting support with the required documentation.<br />
+      If you are writing a policy for someone else, <a href="#">start a new application</a> using a different email.
+    </p>
+  </div>
+
+  <div class="form-fields">
+
+    <!-- Row 1: First name, M.I., Last name — editable -->
+    <div class="field-row">
+      <div class="field w-324">
+        <label class="field-label" for="first-name">First name</label>
+        <input class="text-input" id="first-name" type="text" value="Jon" autocomplete="given-name" />
+      </div>
+      <div class="field w-64">
+        <label class="field-label" for="mi">M.I.</label>
+        <input class="text-input" id="mi" type="text" value="K" maxlength="2" />
+      </div>
+      <div class="field grow">
+        <label class="field-label" for="last-name">Last name</label>
+        <input class="text-input" id="last-name" type="text" value="Ross" autocomplete="family-name" />
+      </div>
+    </div>
+
+    <!-- Row 2: Sex (custom dropdown), ZIP code (editable) -->
+    <div class="field-row">
+      <div class="field grow">
+        <label class="field-label">Sex</label>
+        <div class="custom-select" id="sex-select" tabindex="0" role="combobox" aria-label="Sex" aria-expanded="false">
+          <div class="custom-select-trigger">
+            <span class="select-value">Male</span>
+            <div class="chevron-wrap">
+              <div class="chevron-inner">
+                <img src="icons/8cf6f3a7-f783-429a-92ce-595723750830.svg" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="custom-select-dropdown">
+            <div class="custom-select-option selected" data-value="Male">Male</div>
+            <div class="custom-select-option" data-value="Female">Female</div>
+          </div>
+        </div>
+      </div>
+      <div class="field grow">
+        <label class="field-label" for="zip">ZIP code</label>
+        <input class="text-input" id="zip" type="text" value="12345" maxlength="10" autocomplete="postal-code" />
+      </div>
+    </div>
+
+    <!-- Row 3: Birth date (disabled), Birth country (disabled/pre-filled) -->
+    <div class="field-row">
+      <div class="field grow">
+        <label class="field-label" for="dob">Birth date</label>
+        <div class="field-display">
+          <span style="flex:1">11/12/1980</span>
+          <div class="cal-icon">
+            <img src="icons/d6da295b-5339-4f40-b01d-6104243494aa.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="field grow">
+        <label class="field-label" for="birth-country">Birth country</label>
+        <div class="field-display"><span>USA</span></div>
+      </div>
+    </div>
+
+    <!-- Row 4: Birth state — custom dropdown with all US states -->
+    <div class="field w-full">
+      <label class="field-label">Birth state</label>
+      <div class="custom-select" id="state-select" tabindex="0" role="combobox" aria-label="Birth state" aria-expanded="false">
+        <div class="custom-select-trigger">
+          <span class="select-value">Arizona (AZ)</span>
+          <div class="chevron-wrap">
+            <div class="chevron-inner">
+              <img src="icons/8cf6f3a7-f783-429a-92ce-595723750830.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="custom-select-dropdown" id="state-options"></div>
+      </div>
+    </div>
+
+    <!-- Radio question -->
+    <div class="radio-section">
+      <p class="radio-question">Is this person a family member, employee, or business associate of yours, [Agent Name]?</p>
+      <div class="radio-group" role="radiogroup">
+        <label class="radio-option">
+          <div class="radio-circle" aria-hidden="true"></div>
+          <span class="radio-label">Yes</span>
+          <input type="radio" name="associate" value="yes" style="position:absolute;opacity:0;width:0;height:0;" />
+        </label>
+        <label class="radio-option">
+          <div class="radio-circle checked" aria-hidden="true">
+            <img src="icons/c39e2378-36df-4eb5-8fd3-f2d17138a2ac.svg" alt="" />
+          </div>
+          <span class="radio-label">No</span>
+          <input type="radio" name="associate" value="no" checked style="position:absolute;opacity:0;width:0;height:0;" />
+        </label>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Continue button card -->
+<div class="card">
+  <button class="btn-continue">Continue</button>
+</div>

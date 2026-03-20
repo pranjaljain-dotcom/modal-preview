@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirm Policy Owner Details</title>
+  <style>
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Light.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Theinhardt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #f4f4f4;
+      min-height: 100vh;
+    }
+
+    /* ── LEFT SIDEBAR ─────────────────────────────────── */
+    .sidebar {
+      width: 320px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: linear-gradient(-70.43deg, #e6f5ec 0%, #ebf0f9 100%);
+      overflow: hidden;
+      box-shadow: 2px 0px 8px rgba(16,24,40,0.08);
+      z-index: 10;
+    }
+    .sidebar-blob {
+      position: absolute;
+      width: 1280px;
+      height: 1280px;
+      bottom: -274px;
+      right: -347px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .sidebar-blob img {
+      width: 993px;
+      height: 993px;
+      transform: scaleY(-1) rotate(-159.18deg);
+      opacity: 0.5;
+    }
+    .sidebar-logo {
+      position: absolute;
+      top: 56px;
+      left: 48px;
+      width: 90px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar-logo img {
+      height: 16px;
+      width: 83px;
+      object-fit: contain;
+      object-position: left center;
+    }
+    .sidebar-content {
+      position: absolute;
+      top: 112px;
+      left: 48px;
+      width: 232px;
+    }
+    .sidebar-label {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      color: #272727;
+      letter-spacing: -0.14px;
+      margin-bottom: 32px;
+    }
+    .stepper { display: flex; flex-direction: column; gap: 8px; }
+    .step { display: flex; gap: 12px; height: 76px; align-items: flex-start; }
+    .step-connector-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      height: 100%;
+      flex-shrink: 0;
+    }
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      border: 1px solid #d4d4d4;
+      background: #fff;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-icon.active { border-color: #056257; }
+    .step-icon img { width: 24px; height: 24px; }
+    .step-line {
+      width: 2px;
+      flex: 1;
+      background: #d4d4d4;
+      border-radius: 2px;
+      min-height: 4px;
+    }
+    .step-line.hidden { opacity: 0; }
+    .step-text {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      padding: 8px 0;
+    }
+    .step-text p { font-size: 14px; font-weight: 700; line-height: 20px; color: #7e7e7e; }
+    .step-text p.active { color: #272727; }
+    .agent-cards {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      width: 224px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .agent-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 200px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid #fff;
+      box-shadow: 0px 1.33px 2.67px -2px rgba(16,24,40,0.06), 0px 2.67px 5.33px -2px rgba(16,24,40,0.1);
+      background: #c0d8d5;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .avatar-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 133px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid #fff;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avatar-icon img { width: 24px; height: 24px; }
+    .agent-info { display: flex; flex-direction: column; gap: 4px; }
+    .agent-name { font-size: 16px; font-weight: 500; line-height: 24px; color: #272727; }
+    .agent-role { font-size: 14px; font-weight: 400; line-height: 20px; color: #525252; }
+    .agent-phone { font-size: 16px; font-weight: 500; line-height: 24px; color: #272727; text-decoration: underline; }
+
+    /* ── MAIN CONTENT ────────────────────────────────── */
+    .main {
+      margin-left: 320px;
+      min-height: 100vh;
+      padding: 56px 8px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Content entry animation */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .content-stack {
+      animation: fadeSlideUp 0.25s ease both;
+    }
+    .content-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 720px;
+      max-width: 100%;
+    }
+
+    /* Back + progress */
+    .back-bar { display: flex; flex-direction: column; gap: 24px; }
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      width: fit-content;
+      text-decoration: none;
+    }
+
+    .back-btn img { width: 24px; height: 24px; }
+    .back-btn span { font-size: 18px; font-weight: 500; line-height: 26px; color: #272727; }
+    .progress-track {
+      height: 8px;
+      background: #d4d4d4;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 55%;
+      background: #056257;
+      border-radius: 4px;
+    }
+
+    /* Card */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.06), 0px 1px 3px rgba(16,24,40,0.1);
+    }
+
+    /* ── Confirmation card sections ─────────────────── */
+    .confirm-card {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .card-heading {
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 40px;
+      color: #272727;
+      letter-spacing: -0.28px;
+    }
+
+    .section { display: flex; flex-direction: column; gap: 16px; }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      color: #272727;
+    }
+
+    /* Profile preview card */
+    .profile-card {
+      background: #f5f8fc;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+    }
+    .profile-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 200px;
+      background: #f4f4f4;
+      border: 2px solid #fff;
+      box-shadow: 0px 1.33px 2.67px -2px rgba(16,24,40,0.06), 0px 2.67px 5.33px -2px rgba(16,24,40,0.1);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 500;
+      color: #475467;
+      letter-spacing: -0.16px;
+    }
+    .profile-info { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .profile-name { font-size: 20px; font-weight: 500; line-height: 28px; color: #272727; }
+    .profile-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 24px;
+    }
+    .meta-icon { width: 20px; height: 20px; overflow: hidden; position: relative; flex-shrink: 0; }
+    .meta-icon .icon-inner { position: absolute; display: block; }
+    .meta-icon .icon-inner img { position: absolute; display: block; max-width: none; width: 100%; height: 100%; }
+    .meta-text {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #525252;
+      white-space: nowrap;
+    }
+    .meta-sep {
+      font-size: 16px;
+      line-height: 24px;
+      color: #525252;
+      flex-shrink: 0;
+    }
+
+    /* ── Address section ─────────────────────────────── */
+    .address-options { display: flex; flex-direction: column; gap: 16px; }
+
+    .address-card {
+      background: #f3f7f7;
+      border: 1px solid #e9e9e9;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .address-card.selected {
+      background: #dae7e6;
+      border-color: #056257;
+    }
+
+    .addr-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #d4d4d4;
+      background: #fff;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s;
+      overflow: hidden;
+    }
+    .address-card.selected .addr-radio {
+      border-color: #056257;
+    }
+    .addr-radio-check {
+      width: 9px;
+      height: 9px;
+      display: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .addr-radio-check img {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .address-card.selected .addr-radio-check { display: block; }
+
+    .addr-text {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #525252;
+      flex: 1;
+    }
+    .address-card.selected .addr-text { color: #056257; }
+
+    /* ── Manual address form ──────────────────────────── */
+    .manual-address-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.35s cubic-bezier(0,0,0.2,1), opacity 0.25s ease, margin-top 0.35s;
+      margin-top: 0;
+    }
+    .manual-address-form.open {
+      max-height: 600px;
+      opacity: 1;
+      overflow: visible;
+      margin-top: 16px;
+    }
+
+    /* Two-column row inside manual form */
+    .manual-addr-row {
+      display: flex;
+      gap: 16px;
+    }
+    .manual-addr-row .field { flex: 1; }
+
+    /* Plain text input (reused across manual form) */
+    .text-input-plain {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: #fff;
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .text-input-plain::placeholder { color: #7e7e7e; }
+    .text-input-plain:focus {
+      border-color: #056257;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(5,98,87,0.12);
+    }
+
+    /* ── Citizenship section ──────────────────────────── */
+    .citizenship-fields { display: flex; flex-direction: column; gap: 20px; }
+
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field-label {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #525252;
+    }
+
+    /* Chevron (matches Figma) */
+    .chevron-wrap {
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .chevron-wrap .chevron-inner {
+      position: absolute;
+      top: 34.56%;
+      bottom: 34.56%;
+      left: 25%;
+      right: 25%;
+    }
+    .chevron-wrap .chevron-inner img {
+      position: absolute;
+      display: block;
+      max-width: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Custom dropdown */
+    .custom-select { position: relative; width: 100%; }
+    .custom-select-trigger {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .custom-select.open .custom-select-trigger,
+    .custom-select-trigger:focus-visible {
+      border-color: #056257;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(5,98,87,0.12);
+      outline: none;
+    }
+    .custom-select.open .custom-select-trigger .chevron-wrap { transform: rotate(180deg); }
+    .custom-select-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      box-shadow: 0px 4px 16px rgba(16,24,40,0.12);
+      z-index: 100;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+    .custom-select.open .custom-select-dropdown { display: block; }
+    .custom-select-option {
+      padding: 12px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .custom-select-option:hover { background: #f3f7f7; }
+    .custom-select-option.selected { background: #f3f7f7; color: #056257; font-weight: 500; }
+
+    /* SSN field */
+    .ssn-field {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .ssn-field:focus-within {
+      border-color: #056257;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(5,98,87,0.12);
+    }
+    .ssn-field input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: transparent;
+      font-family: inherit;
+    }
+    .ssn-field input:disabled {
+      color: #272727;
+      cursor: default;
+    }
+    .ssn-edit-btn {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.15s;
+    }
+    .ssn-edit-btn:hover { opacity: 1; }
+    .ssn-edit-btn .edit-inner {
+      position: absolute;
+      inset: 12.5% 12.49%;
+    }
+    .ssn-edit-btn .edit-inner img {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Continue button */
+    .btn-continue {
+      width: 100%;
+      height: 60px;
+      background: #272727;
+      border: 1px solid #272727;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .btn-continue:hover { background: #3a3a3a; }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .sidebar { width: 260px; }
+      .sidebar-content { left: 28px; width: 204px; }
+      .sidebar-logo { left: 28px; }
+      .agent-cards { left: 28px; width: calc(100% - 56px); }
+      .main { margin-left: 260px; }
+      .content-stack { width: 100%; }
+    }
+    @media (max-width: 860px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 24px;
+      }
+      .sidebar-blob { display: none; }
+      .sidebar-logo, .sidebar-content, .agent-cards { position: static; }
+      .sidebar-logo { margin-bottom: 24px; }
+      .sidebar-content { width: 100%; margin-bottom: 24px; }
+      .agent-cards { width: 100%; position: static; }
+      .sidebar-label { margin-bottom: 16px; }
+      .step { height: auto; }
+      .main { margin-left: 0; padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-blob">
+      <img src="icons/fdbdc5e4-0cb8-41d4-9424-674250245502.svg" alt="" />
+    </div>
+    <div class="sidebar-logo">
+      <img src="icons/82084956-24dc-4ef4-915e-75495b6d32dd.svg" alt="Ethos" />
+    </div>
+    <div class="sidebar-content">
+      <p class="sidebar-label">Application progress</p>
+      <nav class="stepper" aria-label="Application steps">
+        <div class="step">
+          <div class="step-connector-wrap">
+            <div class="step-icon active">
+              <img src="icons/1694e556-2b1d-4043-851d-4da8df695e05.svg" alt="" />
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-text"><p class="active">Personal details</p></div>
+        </div>
+        <div class="step">
+          <div class="step-connector-wrap">
+            <div class="step-icon">
+              <img src="icons/67899bbb-d852-4413-81fd-5e204f9ca461.svg" alt="" />
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-text"><p>Health details</p></div>
+        </div>
+        <div class="step">
+          <div class="step-connector-wrap">
+            <div class="step-icon">
+              <img src="icons/1563b94e-0e42-4cd5-9cdc-78bc870d8dbe.svg" alt="" />
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-text"><p>Underwriting decision</p></div>
+        </div>
+        <div class="step">
+          <div class="step-connector-wrap">
+            <div class="step-icon">
+              <img src="icons/2fdc0bd2-e2a4-4a2a-b6e0-8bb9dd68bbe7.svg" alt="" />
+            </div>
+            <div class="step-line hidden"></div>
+          </div>
+          <div class="step-text"><p>Check out</p></div>
+        </div>
+      </nav>
+    </div>
+    <div class="agent-cards">
+      <div class="agent-card">
+        <div class="avatar">
+          <img src="icons/2323fe8e-fa91-4d53-ab72-4e0b88d92fe6.png" alt="Mike Johnson" />
+        </div>
+        <div class="agent-info">
+          <p class="agent-name">Mike Johnson</p>
+          <p class="agent-role">Insurance agent</p>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="avatar-icon">
+          <img src="icons/1694e556-2b1d-4043-851d-4da8df695e05.svg" alt="" />
+        </div>
+        <div class="agent-info">
+          <p class="agent-phone">(415) 639-3968</p>
+          <p class="agent-role">Agent helpline no.</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="content-stack">
+
+      <!-- Back button only (progress bar lives in the persistent shell) -->
+      <div class="back-bar">
+        <a class="back-btn" href="po-form.html" onclick="event.preventDefault(); navigateTo('po-form.html');" aria-label="Go back">
+          <div style="width:24px;height:24px;overflow:hidden;position:relative;flex-shrink:0;">
+            <div style="position:absolute;inset:16.67%;">
+              <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/0d2e3568-8d1c-4205-9655-4bf70e2a15bd.svg"/>
+            </div>
+          </div>
+          <span>Back</span>
+        </a>
+      </div>
+
+      <!-- Confirmation card -->
+      <div class="card">
+        <div class="confirm-card">
+
+          <h1 class="card-heading">Intended policy owner details</h1>
+
+          <!-- Basic information -->
+          <div class="section">
+            <p class="section-title">Basic information</p>
+            <div class="profile-card">
+              <div class="profile-avatar" id="profile-initials">MR</div>
+              <div class="profile-info">
+                <p class="profile-name" id="profile-name">Mike Ross</p>
+                <div class="profile-meta">
+                  <!-- Email -->
+                  <div class="meta-item">
+                    <div class="meta-icon">
+                      <div class="icon-inner" style="inset:16.67% 8.33%;">
+                        <img src="icons/4f5af5e3-dc8e-4f65-ad73-3cbc081f09dd.svg" alt="" />
+                      </div>
+                    </div>
+                    <span class="meta-text" id="profile-email"></span>
+                  </div>
+                  <span class="meta-sep">•</span>
+                  <!-- Sex -->
+                  <div class="meta-item">
+                    <div class="meta-icon">
+                      <div class="icon-inner" style="inset:16.67%;">
+                        <img src="icons/4c115be1-d0b7-4dd8-ba10-a45d26a5fab1.svg" alt="" />
+                      </div>
+                    </div>
+                    <span class="meta-text" id="profile-sex">Male</span>
+                  </div>
+                  <span class="meta-sep">•</span>
+                  <!-- DOB -->
+                  <div class="meta-item">
+                    <div class="meta-icon">
+                      <div class="icon-inner" style="inset:8.33% 12.5%;">
+                        <img src="icons/97248889-43a5-4025-8a9a-5c4ce4cf1425.svg" alt="" />
+                      </div>
+                    </div>
+                    <span class="meta-text" id="profile-dob">11/12/1980</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="section">
+            <p class="section-title">Address</p>
+            <div class="address-options" role="radiogroup" aria-label="Select address">
+              <div class="address-card" role="radio" aria-checked="false" tabindex="0" data-addr="212, Northern blocks, San Francisco, CA, 41212">
+                <div class="addr-radio">
+                  <div class="addr-radio-check">
+                    <img src="icons/e83271c2-b0b0-48f4-ab11-3ee2fde44ff0.svg" alt="" />
+                  </div>
+                </div>
+                <span class="addr-text">212, Northern blocks, San Francisco, CA, 41212</span>
+              </div>
+              <div class="address-card selected" role="radio" aria-checked="true" tabindex="0" data-addr="12 Church Gate, San Francisco, CA, 41212">
+                <div class="addr-radio">
+                  <div class="addr-radio-check">
+                    <img src="icons/e83271c2-b0b0-48f4-ab11-3ee2fde44ff0.svg" alt="" />
+                  </div>
+                </div>
+                <span class="addr-text">12 Church Gate, San Francisco, CA, 41212</span>
+              </div>
+              <div class="address-card" role="radio" aria-checked="false" tabindex="0" data-addr="manual">
+                <div class="addr-radio">
+                  <div class="addr-radio-check">
+                    <img src="icons/e83271c2-b0b0-48f4-ab11-3ee2fde44ff0.svg" alt="" />
+                  </div>
+                </div>
+                <span class="addr-text">Enter manually</span>
+              </div>
+
+              <!-- Manual address form — shown when "Enter manually" is selected -->
+              <div class="manual-address-form" id="manual-address-form">
+                <!-- Street address -->
+                <div class="field">
+                  <label class="field-label" for="manual-street">Street address</label>
+                  <input class="text-input-plain" id="manual-street" type="text" placeholder="123 Main St" />
+                </div>
+                <!-- Apt / Suite -->
+                <div class="field">
+                  <label class="field-label" for="manual-apt">Apt / Suite <span style="font-weight:400;color:#7e7e7e;">(optional)</span></label>
+                  <input class="text-input-plain" id="manual-apt" type="text" placeholder="Apt 4B" />
+                </div>
+                <!-- Zip + City in a row -->
+                <div class="manual-addr-row">
+                  <div class="field">
+                    <label class="field-label" for="manual-zip">Zip code</label>
+                    <input class="text-input-plain" id="manual-zip" type="text" placeholder="94103" maxlength="10" />
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="manual-city">City</label>
+                    <input class="text-input-plain" id="manual-city" type="text" placeholder="San Francisco" />
+                  </div>
+                </div>
+                <!-- State dropdown -->
+                <div class="field">
+                  <label class="field-label">State</label>
+                  <div class="custom-select" id="state-select" tabindex="0" role="combobox" aria-label="State" aria-expanded="false">
+                    <div class="custom-select-trigger">
+                      <span class="select-value" style="color:#7e7e7e;">Select state</span>
+                      <div class="chevron-wrap">
+                        <div class="chevron-inner">
+                          <img src="icons/8cf6f3a7-f783-429a-92ce-595723750830.svg" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="custom-select-dropdown" id="addr-state-options"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Citizenship -->
+          <div class="section">
+            <p class="section-title">Citizenship</p>
+            <div class="citizenship-fields">
+
+              <!-- Citizenship status dropdown -->
+              <div class="field">
+                <label class="field-label">Citizenship status</label>
+                <div class="custom-select" id="citizenship-select" tabindex="0" role="combobox" aria-label="Citizenship status" aria-expanded="false">
+                  <div class="custom-select-trigger">
+                    <span class="select-value">US citizen</span>
+                    <div class="chevron-wrap">
+                      <div class="chevron-inner">
+                        <img src="icons/8cf6f3a7-f783-429a-92ce-595723750830.svg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="custom-select-dropdown">
+                    <div class="custom-select-option selected" data-value="us-citizen">US citizen</div>
+                    <div class="custom-select-option" data-value="permanent-resident">Permanent resident</div>
+                    <div class="custom-select-option" data-value="visa-holder">Visa holder</div>
+                    <div class="custom-select-option" data-value="other">Other</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SSN field -->
+              <div class="field">
+                <label class="field-label">Enter SSN</label>
+                <div class="ssn-field">
+                  <input type="text" id="ssn-input" value="333-66-9999" disabled aria-label="Social Security Number" maxlength="11" />
+                  <div class="ssn-edit-btn" id="ssn-edit-btn" role="button" tabindex="0" aria-label="Edit SSN">
+                    <div class="edit-inner">
+                      <img src="icons/86f74440-f2b7-4bb5-a8b5-328671731544.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Continue button -->
+      <div class="card">
+        <button class="btn-continue" id="confirm-continue">Continue</button>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    /* Shared validation helper — used by both SPA (shell calls it) and direct-load path */
+    function validateAndContinue() {
+      const isManual = document.querySelector('.address-card[data-addr="manual"]')?.classList.contains('selected');
+      if (isManual) {
+        const street   = document.getElementById('manual-street');
+        const zip      = document.getElementById('manual-zip');
+        const city     = document.getElementById('manual-city');
+        const stateSel = document.getElementById('state-select');
+        const stateVal = stateSel?.querySelector('.select-value');
+        let hasError = false;
+
+        const markField = (el, isErr) => {
+          if (!el) return;
+          if (isErr) {
+            el.style.borderColor = '#d92d20';
+            el.style.boxShadow = '0 0 0 4px rgba(217,45,32,0.12)';
+            let msg = el.parentElement.querySelector('.field-error-msg');
+            if (!msg) { msg = document.createElement('p'); msg.className = 'field-error-msg error-msg'; el.parentElement.appendChild(msg); }
+            msg.textContent = 'This field is required';
+            el.addEventListener('input', () => markField(el, false), { once: true });
+          } else {
+            el.style.borderColor = '';
+            el.style.boxShadow = '';
+            const msg = el.parentElement.querySelector('.field-error-msg');
+            if (msg) msg.remove();
+          }
+        };
+        const markSelect = (sel, isErr) => {
+          if (!sel) return;
+          const trigger = sel.querySelector('.custom-select-trigger');
+          if (isErr) {
+            if (trigger) { trigger.style.borderColor = '#d92d20'; trigger.style.boxShadow = '0 0 0 4px rgba(217,45,32,0.12)'; }
+            let msg = sel.parentElement.querySelector('.field-error-msg');
+            if (!msg) { msg = document.createElement('p'); msg.className = 'field-error-msg error-msg'; sel.parentElement.appendChild(msg); }
+            msg.textContent = 'Please select a state';
+            sel.querySelectorAll('.custom-select-option').forEach(o =>
+              o.addEventListener('click', () => markSelect(sel, false), { once: true })
+            );
+          } else {
+            if (trigger) { trigger.style.borderColor = ''; trigger.style.boxShadow = ''; }
+            const msg = sel.parentElement.querySelector('.field-error-msg');
+            if (msg) msg.remove();
+          }
+        };
+
+        const empty = el => !el || !el.value || !el.value.trim();
+        if (empty(street)) { markField(street, true); hasError = true; } else markField(street, false);
+        if (empty(zip))    { markField(zip,    true); hasError = true; } else markField(zip,    false);
+        if (empty(city))   { markField(city,   true); hasError = true; } else markField(city,   false);
+
+        const noState = !stateVal || stateVal.textContent.trim() === 'Select state';
+        markSelect(stateSel, noState);
+        if (noState) hasError = true;
+
+        if (hasError) return;
+      }
+      // Navigate — use shell's navigateTo if available, never do raw href to partial file
+      if (typeof window.navigateTo === 'function') window.navigateTo('po-mobile.html');
+      else window.location.href = 'policy-owner.html';
+    }
+
+    /*
+     * When this page is reached via SPA navigation from policy-owner.html,
+     * all logic is handled by initConfirmPage() defined in that shell.
+     *
+     * This script provides a fallback for direct page loads only.
+     */
+    if (typeof initConfirmPage === 'function') {
+      // SPA path: wire the button to our shared validator
+      const btn = document.getElementById('confirm-continue');
+      if (btn) btn.onclick = validateAndContinue;
+    } else {
+      // Direct-load fallback ─────────────────────────────────
+      const data = (() => {
+        try { return JSON.parse(sessionStorage.getItem('policyOwnerData') || '{}'); } catch { return {}; }
+      })();
+
+      if (data.firstName || data.lastName) {
+        const first = (data.firstName || '').trim();
+        const mi    = (data.mi || '').trim();
+        const last  = (data.lastName || '').trim();
+        const fullName = [first, mi, last].filter(Boolean).join(' ');
+        const initials = [(first[0] || ''), (last[0] || '')].join('').toUpperCase();
+        const nameEl = document.getElementById('profile-name');
+        const initEl = document.getElementById('profile-initials');
+        if (nameEl) nameEl.textContent = fullName || 'Mike Ross';
+        if (initEl) initEl.textContent = initials || 'MR';
+      }
+      if (data.email) { const el = document.getElementById('profile-email'); if (el) el.textContent = data.email; }
+      if (data.sex) { const el = document.getElementById('profile-sex'); if (el) el.textContent = data.sex; }
+      if (data.dob) { const el = document.getElementById('profile-dob'); if (el) el.textContent = data.dob; }
+
+      // Address cards
+      const manualForm = document.getElementById('manual-address-form');
+      document.querySelectorAll('.address-card').forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.address-card').forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-checked','false'); });
+          card.classList.add('selected'); card.setAttribute('aria-checked','true');
+          // Show/hide manual form
+          if (card.dataset.addr === 'manual') {
+            manualForm && manualForm.classList.add('open');
+          } else {
+            manualForm && manualForm.classList.remove('open');
+          }
+        });
+      });
+
+      // Populate address state dropdown
+      const US_STATES = [
+        ['AL','Alabama'],['AK','Alaska'],['AZ','Arizona'],['AR','Arkansas'],['CA','California'],
+        ['CO','Colorado'],['CT','Connecticut'],['DE','Delaware'],['FL','Florida'],['GA','Georgia'],
+        ['HI','Hawaii'],['ID','Idaho'],['IL','Illinois'],['IN','Indiana'],['IA','Iowa'],
+        ['KS','Kansas'],['KY','Kentucky'],['LA','Louisiana'],['ME','Maine'],['MD','Maryland'],
+        ['MA','Massachusetts'],['MI','Michigan'],['MN','Minnesota'],['MS','Mississippi'],['MO','Missouri'],
+        ['MT','Montana'],['NE','Nebraska'],['NV','Nevada'],['NH','New Hampshire'],['NJ','New Jersey'],
+        ['NM','New Mexico'],['NY','New York'],['NC','North Carolina'],['ND','North Dakota'],['OH','Ohio'],
+        ['OK','Oklahoma'],['OR','Oregon'],['PA','Pennsylvania'],['RI','Rhode Island'],['SC','South Carolina'],
+        ['SD','South Dakota'],['TN','Tennessee'],['TX','Texas'],['UT','Utah'],['VT','Vermont'],
+        ['VA','Virginia'],['WA','Washington'],['WV','West Virginia'],['WI','Wisconsin'],['WY','Wyoming'],
+        ['DC','District of Columbia']
+      ];
+      const addrStateOpts = document.getElementById('addr-state-options');
+      if (addrStateOpts) {
+        US_STATES.forEach(([abbr, name]) => {
+          const el = document.createElement('div');
+          el.className = 'custom-select-option';
+          el.dataset.value = abbr;
+          el.textContent = `${name} (${abbr})`;
+          addrStateOpts.appendChild(el);
+        });
+      }
+
+      // Dropdowns
+      document.querySelectorAll('.custom-select').forEach(select => {
+        const trigger = select.querySelector('.custom-select-trigger');
+        const valueEl = select.querySelector('.select-value');
+        if (!trigger) return;
+        trigger.addEventListener('click', e => {
+          e.stopPropagation();
+          const isOpen = select.classList.contains('open');
+          document.querySelectorAll('.custom-select.open').forEach(s => { s.classList.remove('open'); s.setAttribute('aria-expanded','false'); });
+          if (!isOpen) { select.classList.add('open'); select.setAttribute('aria-expanded','true'); }
+        });
+        select.querySelectorAll('.custom-select-option').forEach(opt => {
+          opt.addEventListener('click', e => {
+            e.stopPropagation();
+            select.querySelectorAll('.custom-select-option').forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            valueEl.textContent = opt.textContent;
+            valueEl.style.color = '#272727';
+            select.classList.remove('open'); select.setAttribute('aria-expanded','false');
+          });
+        });
+      });
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.custom-select.open').forEach(s => { s.classList.remove('open'); s.setAttribute('aria-expanded','false'); });
+      });
+
+      // SSN edit
+      const ssnInput = document.getElementById('ssn-input');
+      const ssnEditBtn = document.getElementById('ssn-edit-btn');
+      let ssnEditing = false;
+      function toggleSsn() {
+        ssnEditing = !ssnEditing;
+        ssnInput.disabled = !ssnEditing;
+        if (ssnEditing) { ssnInput.focus(); ssnInput.select(); ssnEditBtn.style.opacity = '1'; }
+        else { ssnEditBtn.style.opacity = '0.7'; }
+      }
+      if (ssnEditBtn) ssnEditBtn.addEventListener('click', toggleSsn);
+
+      // Continue — validate manual address if selected
+      const btn = document.getElementById('confirm-continue');
+      if (btn) btn.onclick = validateAndContinue;
+
+      // Back button — only set navigateTo if shell hasn't already defined it
+      if (typeof window.navigateTo !== 'function') {
+        window.navigateTo = url => window.location.href = 'policy-owner.html';
+      }
+    } // end direct-load fallback
+
+    // popstate — use shell's navigateTo if available, else reload
+    window.addEventListener('popstate', e => {
+      if (!e.state?.url) return;
+      if (typeof navigateTo === 'function') navigateTo(e.state.url);
+      else window.location.href = e.state.url;
+    });
+  </script>
+
+</body>
+</html>

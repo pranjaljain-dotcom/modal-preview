@@ -1,0 +1,39 @@
+<script>if(typeof navigateTo==='undefined'){window.location.replace('policy-owner.html');}</script>
+<div class="back-bar">
+  <a class="back-btn" href="policy-owner-confirm.html" onclick="event.preventDefault();navigateTo('policy-owner-confirm.html');">
+    <div style="width:24px;height:24px;overflow:hidden;position:relative;flex-shrink:0;">
+      <div style="position:absolute;inset:16.67%;">
+        <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;" src="icons/3a549d9c-32e3-4d9e-b70b-046be8edc84a.svg"/>
+      </div>
+    </div>
+    <span>Back</span>
+  </a>
+</div>
+<div class="card">
+  <h2 class="card-title">Confirm policy owner's mobile number</h2>
+  <div class="addr-options" id="mobile-options">
+    <div class="address-card" data-mobile="4232" data-display="(***) *** -4232">
+      <div class="addr-radio"><div class="addr-radio-inner"></div></div>
+      <span class="addr-label">(***) *** -4232</span>
+    </div>
+    <div class="address-card" data-mobile="9482" data-display="(***) *** -9482">
+      <div class="addr-radio"><div class="addr-radio-inner"></div></div>
+      <span class="addr-label">(***) *** -9482</span>
+    </div>
+    <div class="address-card" data-mobile="manual">
+      <div class="addr-radio"><div class="addr-radio-inner"></div></div>
+      <span class="addr-label">Enter manually</span>
+    </div>
+  </div>
+
+  <!-- Manual phone form — shown when "Enter manually" is selected -->
+  <div class="manual-mobile-form" id="manual-mobile-form">
+    <div class="field">
+      <label class="field-label" for="manual-phone">Mobile number</label>
+      <input class="text-input-plain" id="manual-phone" type="tel" placeholder="(123) 456-7890" maxlength="14" />
+    </div>
+  </div>
+</div>
+<div class="card">
+  <button class="btn-continue btn-disabled" id="btn-mobile-continue" disabled>Continue</button>
+</div>

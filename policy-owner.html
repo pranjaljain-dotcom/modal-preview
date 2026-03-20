@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Intended Policy Owner Details</title>
+  <style>
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Light.otf') format('opentype');
+      font-weight: 300;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Theinhardt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #f4f4f4;
+      min-height: 100vh;
+    }
+
+    /* ── LEFT SIDEBAR ─────────────────────────────────── */
+    .sidebar {
+      width: 320px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: linear-gradient(-70.43deg, #e6f5ec 0%, #ebf0f9 100%);
+      overflow: hidden;
+      box-shadow: 2px 0px 8px rgba(16,24,40,0.08);
+      z-index: 10;
+    }
+
+    /* decorative background blob */
+    .sidebar-blob {
+      position: absolute;
+      width: 1280px;
+      height: 1280px;
+      bottom: -274px;
+      right: -347px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .sidebar-blob img {
+      width: 993px;
+      height: 993px;
+      transform: scaleY(-1) rotate(-159.18deg);
+      opacity: 0.5;
+    }
+
+    .sidebar-logo {
+      position: absolute;
+      top: 56px;
+      left: 48px;
+      width: 90px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar-logo img {
+      height: 16px;
+      width: 83px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .sidebar-content {
+      position: absolute;
+      top: 112px;
+      left: 48px;
+      width: 232px;
+      transition: top 0.25s ease;
+    }
+    .sidebar.has-contact-card .sidebar-content {
+      top: 222px;
+    }
+
+    .sidebar-label {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      color: #272727;
+      letter-spacing: -0.14px;
+      margin-bottom: 32px;
+    }
+
+    /* Stepper */
+    .stepper { display: flex; flex-direction: column; gap: 8px; }
+
+    .step { display: flex; gap: 12px; height: 76px; align-items: flex-start; }
+
+    .step-connector-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      border: 1px solid #d4d4d4;
+      background: #fff;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-icon.active { border-color: #056257; }
+    .step-icon img { width: 24px; height: 24px; }
+
+    .step-line {
+      width: 2px;
+      flex: 1;
+      background: #d4d4d4;
+      border-radius: 2px;
+      min-height: 4px;
+    }
+    .step-line.hidden { opacity: 0; }
+
+    .step-text {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      padding: 8px 0;
+    }
+    .step-text p {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #7e7e7e;
+    }
+    .step-text p.active { color: #272727; }
+
+    /* Agent cards */
+    .agent-cards {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      width: 224px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .agent-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 200px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid #fff;
+      box-shadow: 0px 1.33px 2.67px -2px rgba(16,24,40,0.06), 0px 2.67px 5.33px -2px rgba(16,24,40,0.1);
+      background: #c0d8d5;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .avatar-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 133px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid #fff;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avatar-icon img { width: 24px; height: 24px; }
+
+    .agent-info { display: flex; flex-direction: column; gap: 4px; }
+    .agent-name { font-size: 16px; font-weight: 500; line-height: 24px; color: #272727; }
+    .agent-role { font-size: 14px; font-weight: 400; line-height: 20px; color: #525252; }
+    .agent-phone {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #272727;
+      text-decoration: underline;
+    }
+
+    /* ── Policy owner contact card (step 6+) ────────── */
+    #policy-owner-contact-card {
+      display: none;
+      position: absolute;
+      top: 112px;
+      left: 48px;
+      width: 224px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .contact-card-name {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #272727;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .contact-card-email {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 18px;
+      color: #525252;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ── MAIN CONTENT ────────────────────────────────── */
+    .main {
+      margin-left: 320px;
+      min-height: 100vh;
+      padding: 56px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Content entry animation */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .content-stack {
+      animation: fadeSlideUp 0.25s ease both;
+    }
+
+    .content-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 720px;
+      max-width: 100%;
+    }
+
+    /* Back + progress bar */
+    .back-bar { display: flex; flex-direction: column; gap: 0; }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      width: fit-content;
+      text-decoration: none;
+    }
+    .back-btn img { width: 24px; height: 24px; }
+    .back-btn span { font-size: 18px; font-weight: 500; line-height: 26px; color: #272727; }
+
+    .progress-track {
+      width: 720px;
+      max-width: calc(100vw - 320px - 16px);
+      height: 8px;
+      background: #d4d4d4;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      flex-shrink: 0;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #056257;
+      border-radius: 4px;
+      transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.06), 0px 1px 3px rgba(16,24,40,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 32px;
+      color: #272727;
+      letter-spacing: -0.24px;
+      margin-bottom: 24px;
+    }
+
+    /* Info bar */
+    .info-bar {
+      background: #f5f8fc;
+      border: 1px solid #cfdef5;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      margin-bottom: 24px;
+    }
+
+    .info-icon-wrap {
+      width: 40px;
+      height: 40px;
+      background: #ccdaf0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-icon-wrap img { width: 20px; height: 20px; }
+
+    .info-text {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #336cc3;
+    }
+    .info-text a { color: #336cc3; text-decoration: underline; }
+
+    /* Form grid */
+    .form-fields { display: flex; flex-direction: column; gap: 24px; }
+
+    .field-row { display: flex; gap: 24px; align-items: flex-start; }
+
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field.grow { flex: 1; min-width: 0; }
+    .field.w-full { width: 100%; }
+    .field.w-324 { width: 324px; flex-shrink: 0; }
+    .field.w-64 { width: 64px; flex-shrink: 0; }
+
+    .field-label {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #525252;
+      white-space: nowrap;
+    }
+
+    /* ── Text inputs ─────────────────────────────────── */
+    .text-input {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: #fff;
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .text-input::placeholder { color: #7e7e7e; }
+    .text-input:focus {
+      border-color: #056257;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(5,98,87,0.12);
+    }
+    .text-input:disabled {
+      background: #f4f4f4;
+      color: #7e7e7e;
+      cursor: default;
+    }
+
+    /* ── Display-only field (disabled, no input element) ── */
+    .field-display {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #7e7e7e;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+    }
+    .field-display .cal-icon { position: relative; width: 20px; height: 20px; flex-shrink: 0; overflow: hidden; }
+    .field-display .cal-icon img { position: absolute; inset: 8.33% 12.5%; display: block; width: 100%; height: 100%; }
+
+    /* ── Chevron (matches Figma: 24×24 container, arrow ~12×7px centred) ── */
+    .chevron-wrap {
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .chevron-wrap .chevron-inner {
+      position: absolute;
+      top: 34.56%;
+      bottom: 34.56%;
+      left: 25%;
+      right: 25%;
+    }
+    .chevron-wrap .chevron-inner img {
+      position: absolute;
+      display: block;
+      max-width: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── Custom dropdown ──────────────────────────────── */
+    .custom-select {
+      position: relative;
+      width: 100%;
+    }
+    .custom-select-trigger {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .custom-select-trigger:focus-visible,
+    .custom-select.open .custom-select-trigger {
+      border-color: #056257;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(5,98,87,0.12);
+      outline: none;
+    }
+    .custom-select-trigger .chevron-wrap {
+      transition: transform 0.15s;
+    }
+    .custom-select.open .custom-select-trigger .chevron-wrap {
+      transform: rotate(180deg);
+    }
+    .custom-select-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      box-shadow: 0px 4px 16px rgba(16,24,40,0.12);
+      z-index: 100;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+    .custom-select.open .custom-select-dropdown { display: block; }
+    .custom-select-option {
+      padding: 12px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .custom-select-option:hover { background: #f3f7f7; }
+    .custom-select-option.selected { background: #f3f7f7; color: #056257; font-weight: 500; }
+
+    .field-input {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      cursor: pointer;
+    }
+    .field-input.disabled {
+      background: #f4f4f4;
+      cursor: default;
+    }
+    .field-input span { color: #7e7e7e; }
+    .field-input .value { color: #272727; }
+
+    /* Radio group */
+    .radio-section { display: flex; flex-direction: column; gap: 8px; }
+
+    .radio-question {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #525252;
+    }
+
+    .radio-group { display: flex; gap: 24px; align-items: center; }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .radio-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #d4d4d4;
+      background: #fff;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .radio-circle.checked {
+      border-color: #056257;
+      background: #fff;
+      overflow: hidden;
+    }
+    .radio-circle.checked img {
+      width: 12px;
+      height: 12px;
+    }
+
+    .radio-label {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #525252;
+    }
+
+    /* Continue button */
+    .btn-continue {
+      width: 100%;
+      height: 60px;
+      background: #272727;
+      border: 1px solid #272727;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .btn-continue:hover { background: #3a3a3a; }
+
+    /* Validation errors */
+    .text-input.error {
+      border-color: #d92d20;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(217,45,32,0.12);
+    }
+    .error-msg {
+      font-size: 13px;
+      color: #d92d20;
+      line-height: 20px;
+      margin-top: -4px;
+    }
+
+    /* ── Confirm page: card & sections ──────────────────── */
+    .confirm-card { display: flex; flex-direction: column; gap: 32px; }
+
+    .card-heading {
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 40px;
+      color: #272727;
+      letter-spacing: -0.28px;
+    }
+
+    .section { display: flex; flex-direction: column; gap: 16px; }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      color: #272727;
+    }
+
+    /* ── Profile preview card ───────────────────────────── */
+    .profile-card {
+      background: #f5f8fc;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+    }
+    .profile-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 200px;
+      background: #f4f4f4;
+      border: 2px solid #fff;
+      box-shadow: 0px 1.33px 2.67px -2px rgba(16,24,40,0.06), 0px 2.67px 5.33px -2px rgba(16,24,40,0.1);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 500;
+      color: #475467;
+      letter-spacing: -0.16px;
+    }
+    .profile-info { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .profile-name { font-size: 20px; font-weight: 500; line-height: 28px; color: #272727; }
+    .profile-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .meta-item { display: flex; align-items: center; gap: 8px; height: 24px; }
+    .meta-icon { width: 20px; height: 20px; overflow: hidden; position: relative; flex-shrink: 0; }
+    .meta-icon .icon-inner { position: absolute; display: block; }
+    .meta-icon .icon-inner img { position: absolute; display: block; max-width: none; width: 100%; height: 100%; }
+    .meta-text { font-size: 16px; font-weight: 400; line-height: 24px; color: #525252; white-space: nowrap; }
+    .meta-sep  { font-size: 16px; line-height: 24px; color: #525252; flex-shrink: 0; }
+
+    /* ── Address radio cards ──────────────────────────────── */
+    .address-options { display: flex; flex-direction: column; gap: 16px; }
+
+    .address-card {
+      background: #f3f7f7;
+      border: 1px solid #e9e9e9;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .address-card.selected { background: #dae7e6; border-color: #056257; }
+
+    .addr-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #d4d4d4;
+      background: #fff;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s;
+      overflow: hidden;
+    }
+    .address-card.selected .addr-radio { border-color: #056257; }
+    .addr-radio-check { width: 9px; height: 9px; display: none; position: relative; overflow: hidden; }
+    .addr-radio-check img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .address-card.selected .addr-radio-check { display: block; }
+    .addr-text { font-size: 16px; font-weight: 500; line-height: 24px; color: #525252; flex: 1; }
+    .address-card.selected .addr-text { color: #056257; }
+
+    /* ── Manual address form ──────────────────────────────── */
+    .manual-address-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.35s cubic-bezier(0,0,0.2,1), opacity 0.25s ease, margin-top 0.35s;
+      margin-top: 0;
+    }
+    .manual-address-form.open {
+      max-height: 600px;
+      opacity: 1;
+      overflow: visible;
+      margin-top: 16px;
+    }
+    .manual-addr-row { display: flex; gap: 16px; }
+    .manual-addr-row .field { flex: 1; }
+
+    /* ── Manual mobile form (step 6) ─────────────────────── */
+    .manual-mobile-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.35s cubic-bezier(0,0,0.2,1), opacity 0.25s ease, margin-top 0.35s;
+      margin-top: 0;
+    }
+    .manual-mobile-form.open {
+      max-height: 200px;
+      opacity: 1;
+      overflow: visible;
+      margin-top: 16px;
+    }
+    .text-input-plain {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: #fff;
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .text-input-plain::placeholder { color: #7e7e7e; }
+    .text-input-plain:focus {
+      border-color: #056257;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(5,98,87,0.12);
+    }
+    .text-input-plain.error {
+      border-color: #d92d20 !important;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(217,45,32,0.12) !important;
+    }
+    .custom-select.error .custom-select-trigger {
+      border-color: #d92d20 !important;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(217,45,32,0.12) !important;
+    }
+
+    /* ── Citizenship / SSN ───────────────────────────────── */
+    .citizenship-fields { display: flex; flex-direction: column; gap: 20px; }
+
+    .ssn-field {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .ssn-field:focus-within {
+      border-color: #056257;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(5,98,87,0.12);
+    }
+    .ssn-field input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: transparent;
+      font-family: inherit;
+    }
+    .ssn-edit-btn {
+      width: 20px; height: 20px;
+      position: relative; overflow: hidden;
+      flex-shrink: 0; cursor: pointer; opacity: 0.7;
+      transition: opacity 0.15s;
+    }
+    .ssn-edit-btn:hover { opacity: 1; }
+    .ssn-edit-btn .edit-inner { position: absolute; inset: 12.5% 12.49%; }
+    .ssn-edit-btn .edit-inner img { position: absolute; display: block; width: 100%; height: 100%; }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .sidebar { width: 260px; }
+      .sidebar-content { left: 28px; width: 204px; }
+      .sidebar-logo { left: 28px; }
+      .agent-cards { left: 28px; width: calc(100% - 56px); }
+      #policy-owner-contact-card { left: 28px; width: calc(100% - 56px); }
+      .main { margin-left: 260px; }
+      .content-stack { width: 100%; }
+      .progress-track { width: 100%; max-width: calc(100vw - 260px - 16px); }
+    }
+
+    @media (max-width: 860px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 24px;
+      }
+      .sidebar-blob { display: none; }
+      .sidebar-logo, .sidebar-content, .agent-cards, #policy-owner-contact-card { position: static; }
+      .sidebar-logo { margin-bottom: 16px; }
+      #policy-owner-contact-card { width: 100%; margin-bottom: 16px; }
+      .sidebar.has-contact-card .sidebar-content { top: 0; }
+      .sidebar-content { width: 100%; margin-bottom: 24px; }
+      .agent-cards { width: 100%; position: static; }
+      .sidebar-label { margin-bottom: 16px; }
+      .step { height: auto; }
+      .main { margin-left: 0; padding: 24px 16px; }
+      .progress-track { width: 100%; max-width: 100%; }
+      .field-row { flex-wrap: wrap; }
+      .field.w-324 { width: 100%; }
+      .field.w-64 { width: 100%; }
+    }
+
+    /* ── PLEDGE (Step 1) ──────────────────────────── */
+    .pledge-items { display: flex; flex-direction: column; gap: 16px; }
+    .pledge-item { display: flex; gap: 12px; align-items: flex-start; }
+    .pledge-icon { width: 24px; height: 24px; flex-shrink: 0; position: relative; overflow: hidden; }
+    .pledge-icon-inner { position: absolute; display: flex; }
+    .pledge-icon-inner img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .pledge-item p { font-size: 16px; line-height: 24px; color: #525252; flex: 1; }
+    .pledge-checkbox-label { display: flex; gap: 12px; align-items: center; cursor: pointer; }
+    .pledge-checkbox-input { display: none; }
+    .pledge-checkbox-box {
+      width: 20px; height: 20px; border: 2px solid #d4d4d4; border-radius: 4px;
+      flex-shrink: 0; position: relative; overflow: hidden;
+      background: white; transition: border-color 0.15s;
+    }
+    /* Checked: border turns green, white bg stays */
+    .pledge-checkbox-input:checked + .pledge-checkbox-box {
+      border-color: #056257;
+    }
+    /* Green inner fill — inset matches Figma: calc(10% - 1.6px) ≈ 0.4px */
+    .pledge-checkbox-input:checked + .pledge-checkbox-box::before {
+      content: ''; position: absolute;
+      inset: calc(10% - 1.6px);
+      background: #056257; border-radius: 2px;
+    }
+    /* Checkmark SVG on top — inset matches Figma: calc(5% - 1.8px) ≈ -0.8px */
+    .pledge-checkbox-input:checked + .pledge-checkbox-box::after {
+      content: ''; position: absolute;
+      inset: calc(5% - 1.8px);
+      background: url('icons/7c7ae1d6-ce40-42da-aa96-3aaf58b8491d.svg') center/contain no-repeat;
+    }
+    .pledge-agree-text { font-size: 18px; line-height: 28px; color: #525252; font-weight: 500; }
+
+    /* ── EMAIL (Step 2) ───────────────────────────── */
+    .email-input-wrap { position: relative; }
+    .email-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; }
+    .email-input-wrap .text-input { padding-left: 42px; }
+
+    /* ── LOADING (Step 4) ─────────────────────────── */
+    .loading-card {
+      background: #deeee7 !important;
+      align-items: center;
+      text-align: center;
+      padding: 32px 24px;
+      gap: 48px;
+    }
+    .loading-illustration { display: flex; justify-content: center; overflow: hidden; }
+    .loading-title { font-size: 24px; font-weight: 500; line-height: 34px; color: #272727; letter-spacing: -0.24px; max-width: 311px; }
+    .loading-tasks { display: flex; flex-direction: column; gap: 16px; width: 334px; }
+    .loading-task { display: flex; align-items: center; gap: 8px; }
+    .loading-task-label { font-size: 14px; line-height: 16px; color: #272727; flex: 1; }
+    .loading-task-bar { width: 114px; height: 6px; background: #c2c2c2; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+    .loading-task-fill { height: 100%; background: #056257; border-radius: 4px; transition: width 0.3s ease; }
+    .loading-task-pct { font-size: 12px; color: #272727; white-space: nowrap; }
+
+    /* ── MOBILE (Step 6) ──────────────────────────── */
+    .addr-options { display: flex; flex-direction: column; gap: 12px; }
+    .addr-label { font-size: 16px; font-weight: 500; line-height: 24px; color: #525252; flex: 1; }
+    .addr-radio-inner {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: transparent; transition: background 0.15s;
+    }
+
+    /* ── OTP (Step 7) ─────────────────────────────── */
+    .otp-inputs { display: flex; gap: 8px; width: 100%; }
+    .otp-box {
+      flex: 1 0 0; min-width: 1px; height: 62px; padding: 8px;
+      border: 1px solid #d4d4d4; border-radius: 8px;
+      text-align: center; font-size: 24px; font-weight: 400; color: #272727;
+      outline: none; transition: border-color 0.15s; box-sizing: border-box;
+    }
+    .otp-box:focus { border-color: #056257; box-shadow: 0 0 0 3px rgba(5,98,87,0.15); }
+    .otp-footer { display: flex; align-items: center; justify-content: space-between; }
+    .otp-timer { display: flex; align-items: center; gap: 8px; }
+    .disclosure-accordion { background: #f4f4f4; border-radius: 8px; padding: 16px; }
+    .disclosure-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+
+    /* disabled continue button */
+    .btn-disabled { background: #d4d4d4 !important; border-color: #d4d4d4 !important; color: #525252 !important; cursor: not-allowed !important; }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-blob">
+      <img src="icons/fdbdc5e4-0cb8-41d4-9424-674250245502.svg" alt="" />
+    </div>
+
+    <div class="sidebar-logo">
+      <img src="icons/82084956-24dc-4ef4-915e-75495b6d32dd.svg" alt="Ethos" />
+    </div>
+
+    <!-- Policy owner contact card — shown from step 6 onwards -->
+    <div id="policy-owner-contact-card">
+      <p class="contact-card-name" id="sidebar-po-name">Jon Ross</p>
+      <p class="contact-card-email" id="sidebar-po-email">—</p>
+    </div>
+
+    <div class="sidebar-content">
+      <p class="sidebar-label">Application progress</p>
+
+      <nav class="stepper" aria-label="Application steps">
+        <!-- Step 1: Personal details (active) -->
+        <div class="step">
+          <div class="step-connector-wrap">
+            <div class="step-icon active">
+              <img src="icons/1694e556-2b1d-4043-851d-4da8df695e05.svg" alt="" />
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-text"><p class="active">Personal details</p></div>
+        </div>
+
+        <!-- Step 2: Health details -->
+        <div class="step">
+          <div class="step-connector-wrap">
+            <div class="step-icon">
+              <img src="icons/67899bbb-d852-4413-81fd-5e204f9ca461.svg" alt="" />
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-text"><p>Health details</p></div>
+        </div>
+
+        <!-- Step 3: Underwriting decision -->
+        <div class="step">
+          <div class="step-connector-wrap">
+            <div class="step-icon">
+              <img src="icons/1563b94e-0e42-4cd5-9cdc-78bc870d8dbe.svg" alt="" />
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-text"><p>Underwriting decision</p></div>
+        </div>
+
+        <!-- Step 4: Check out -->
+        <div class="step">
+          <div class="step-connector-wrap">
+            <div class="step-icon">
+              <img src="icons/2fdc0bd2-e2a4-4a2a-b6e0-8bb9dd68bbe7.svg" alt="" />
+            </div>
+            <div class="step-line hidden"></div>
+          </div>
+          <div class="step-text"><p>Check out</p></div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="agent-cards">
+      <!-- Agent card -->
+      <div class="agent-card">
+        <div class="avatar">
+          <img src="icons/2323fe8e-fa91-4d53-ab72-4e0b88d92fe6.png" alt="Mike Johnson" />
+        </div>
+        <div class="agent-info">
+          <p class="agent-name">Mike Johnson</p>
+          <p class="agent-role">Insurance agent</p>
+        </div>
+      </div>
+
+      <!-- Call card -->
+      <div class="agent-card">
+        <div class="avatar-icon">
+          <img src="icons/1694e556-2b1d-4043-851d-4da8df695e05.svg" alt="" />
+        </div>
+        <div class="agent-info">
+          <p class="agent-phone">(415) 639-3968</p>
+          <p class="agent-role">Agent helpline no.</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- Progress bar lives OUTSIDE content-stack so it never fades during SPA nav -->
+    <div class="progress-track" id="global-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="content-stack">
+
+      <!-- STEP 1: Pledge -->
+      <div class="back-bar" style="visibility:hidden;">
+        <div class="back-btn"><span></span></div>
+      </div>
+      <div class="card">
+        <h1 class="card-title" style="font-size:24px;letter-spacing:-0.24px;">Pledge for truthful and accurate answers</h1>
+        <div class="pledge-items">
+          <!-- task_fact_check -->
+          <div class="pledge-item">
+            <div class="pledge-icon">
+              <div class="pledge-icon-inner" style="inset:12.5% 8.33%;">
+                <img src="icons/5d2d19df-6362-4cd7-8363-3d0d922753e7.svg" alt=""/>
+              </div>
+            </div>
+            <p>I have thoroughly discussed my client's needs, chosen a suitable product, and will assist in completing the insurance application truthfully and accurately to the best of my ability.</p>
+          </div>
+          <!-- health_medical_services -->
+          <div class="pledge-item">
+            <div class="pledge-icon">
+              <div class="pledge-icon-inner" style="inset:8.33%;">
+                <img src="icons/a8364a72-7308-4672-a352-cc943f21d53d.svg" alt=""/>
+              </div>
+            </div>
+            <p>I understand that discrepancies with medical records may result in denied claims, canceled policies, commission chargebacks, and investigation. Knowingly assisting a client in misrepresentation is insurance fraud and may lead to legal action.</p>
+          </div>
+          <!-- profile_badge -->
+          <div class="pledge-item">
+            <div class="pledge-icon">
+              <div class="pledge-icon-inner" style="inset:8.33%;">
+                <img src="icons/22528fc9-d63b-4ac4-99bc-dd726321fc14.svg" alt=""/>
+              </div>
+            </div>
+            <p>I represent that I have a license to sell life insurance in the applicant's state and that my license is in good standing. I also confirm that the application is signed in the applicant's resident state.</p>
+          </div>
+          <!-- task_label_check -->
+          <div class="pledge-item">
+            <div class="pledge-icon">
+              <div class="pledge-icon-inner" style="inset:4.17% 12.5%;">
+                <img src="icons/95ca3b82-f89d-40f9-ae62-a91200587e2f.svg" alt=""/>
+              </div>
+            </div>
+            <p>I certify that I have completed all the training requirements necessary to sell life insurance, including anti-money laundering (AML) training within the last 24 months. <a href="#" style="color:#056257;">More info</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="gap:24px;">
+        <label class="pledge-checkbox-label">
+          <input type="checkbox" id="pledge-agree" class="pledge-checkbox-input"/>
+          <span class="pledge-checkbox-box" id="pledge-checkbox-box"></span>
+          <span class="pledge-agree-text">I confirm that I have read, understood, and agree to the statements above.</span>
+        </label>
+        <button class="btn-continue" id="btn-get-started">Get started</button>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════
+       SHARED CONSTANTS & HELPERS
+    ═══════════════════════════════════════════════════════ */
+    const US_STATES = [
+      ['AL','Alabama'],['AK','Alaska'],['AZ','Arizona'],['AR','Arkansas'],['CA','California'],
+      ['CO','Colorado'],['CT','Connecticut'],['DE','Delaware'],['FL','Florida'],['GA','Georgia'],
+      ['HI','Hawaii'],['ID','Idaho'],['IL','Illinois'],['IN','Indiana'],['IA','Iowa'],
+      ['KS','Kansas'],['KY','Kentucky'],['LA','Louisiana'],['ME','Maine'],['MD','Maryland'],
+      ['MA','Massachusetts'],['MI','Michigan'],['MN','Minnesota'],['MS','Mississippi'],['MO','Missouri'],
+      ['MT','Montana'],['NE','Nebraska'],['NV','Nevada'],['NH','New Hampshire'],['NJ','New Jersey'],
+      ['NM','New Mexico'],['NY','New York'],['NC','North Carolina'],['ND','North Dakota'],['OH','Ohio'],
+      ['OK','Oklahoma'],['OR','Oregon'],['PA','Pennsylvania'],['RI','Rhode Island'],['SC','South Carolina'],
+      ['SD','South Dakota'],['TN','Tennessee'],['TX','Texas'],['UT','Utah'],['VT','Vermont'],
+      ['VA','Virginia'],['WA','Washington'],['WV','West Virginia'],['WI','Wisconsin'],['WY','Wyoming'],
+      ['DC','District of Columbia']
+    ];
+
+    const CHECK_SRC = 'icons/c39e2378-36df-4eb5-8fd3-f2d17138a2ac.svg';
+
+    /* ═══════════════════════════════════════════════════════
+       SHARED HELPERS
+    ═══════════════════════════════════════════════════════ */
+
+    // Wire up all .custom-select elements currently in the DOM
+    function initCustomSelects() {
+      document.querySelectorAll('.custom-select').forEach(select => {
+        const trigger = select.querySelector('.custom-select-trigger');
+        const valueEl = select.querySelector('.select-value');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', e => {
+          e.stopPropagation();
+          const isOpen = select.classList.contains('open');
+          closeAllDropdowns();
+          if (!isOpen) {
+            select.classList.add('open');
+            select.setAttribute('aria-expanded', 'true');
+          }
+        });
+
+        select.addEventListener('keydown', e => {
+          if (e.key === 'Escape') closeAllDropdowns();
+        });
+
+        select.querySelectorAll('.custom-select-option').forEach(opt => {
+          opt.addEventListener('click', e => {
+            e.stopPropagation();
+            select.querySelectorAll('.custom-select-option').forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            valueEl.textContent = opt.textContent;
+            valueEl.style.color = '';
+            closeAllDropdowns();
+          });
+        });
+      });
+    }
+
+    function closeAllDropdowns() {
+      document.querySelectorAll('.custom-select.open').forEach(s => {
+        s.classList.remove('open');
+        s.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // One global outside-click handler (added once)
+    document.addEventListener('click', closeAllDropdowns);
+
+    /* ═══════════════════════════════════════════════════════
+       FORM PAGE  (policy-owner.html)
+    ═══════════════════════════════════════════════════════ */
+    function initFormPage() {
+      showSidebarContactCard(false);
+      // Populate state dropdown
+      const stateOptions = document.getElementById('state-options');
+      if (!stateOptions) return;
+      stateOptions.innerHTML = '';
+      US_STATES.forEach(([abbr, name]) => {
+        const el = document.createElement('div');
+        el.className = 'custom-select-option' + (abbr === 'AZ' ? ' selected' : '');
+        el.dataset.value = abbr;
+        el.textContent = `${name} (${abbr})`;
+        stateOptions.appendChild(el);
+      });
+
+      // Dropdowns
+      initCustomSelects();
+
+      // Yes / No radio
+      document.querySelectorAll('.radio-option').forEach(option => {
+        option.addEventListener('click', () => {
+          document.querySelectorAll('.radio-circle').forEach(c => {
+            c.classList.remove('checked');
+            c.innerHTML = '';
+          });
+          const circle = option.querySelector('.radio-circle');
+          circle.classList.add('checked');
+          circle.innerHTML = `<img src="${CHECK_SRC}" alt="" />`;
+        });
+      });
+
+      // Restore form data from sessionStorage (e.g. after Back navigation)
+      const saved = (() => { try { return JSON.parse(sessionStorage.getItem('policyOwnerData') || 'null'); } catch { return null; } })();
+      if (saved) {
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+        set('first-name', saved.firstName);
+        set('mi',         saved.mi);
+        set('last-name',  saved.lastName);
+        set('zip',        saved.zip);
+        set('dob',        saved.dob);
+        if (saved.dob) {
+          const span = document.querySelector('.field-display span');
+          if (span) span.textContent = saved.dob;
+        }
+        // Restore custom selects (sex + birthState) after dropdowns are initialized
+        setTimeout(() => {
+          const restoreSelect = (selectId, savedValue) => {
+            if (!savedValue) return;
+            const select = document.getElementById(selectId);
+            if (!select) return;
+            const opts = select.querySelectorAll('.custom-select-option');
+            let matched = null;
+            opts.forEach(o => {
+              if (o.dataset.value === savedValue || o.textContent.trim() === savedValue) matched = o;
+            });
+            if (matched) {
+              opts.forEach(o => o.classList.remove('selected'));
+              matched.classList.add('selected');
+              const sv = select.querySelector('.select-value');
+              if (sv) sv.textContent = matched.textContent.trim();
+            }
+          };
+          restoreSelect('sex-select',   saved.sex);
+          restoreSelect('state-select', saved.birthState);
+        }, 0);
+      }
+
+      // Continue with validation
+      const btn = document.querySelector('.btn-continue');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        let valid = true;
+
+        function validate(input, errId, rule) {
+          input.classList.remove('error');
+          const ex = document.getElementById(errId);
+          if (ex) ex.remove();
+          if (!rule(input.value.trim())) {
+            valid = false;
+            input.classList.add('error');
+            const msg = document.createElement('p');
+            msg.className = 'error-msg';
+            msg.id = errId;
+            msg.textContent = rule.errText || 'This field is required.';
+            input.parentNode.appendChild(msg);
+          }
+        }
+
+        const firstName = document.getElementById('first-name');
+        const lastName  = document.getElementById('last-name');
+        const zip       = document.getElementById('zip');
+
+        const notEmpty = v => v.length > 0;
+        notEmpty.errText = 'This field is required.';
+        const validZip = v => /^\d{5}(-\d{4})?$/.test(v);
+        validZip.errText = 'Enter a valid 5-digit ZIP code.';
+
+        validate(firstName, 'err-first', notEmpty);
+        validate(lastName,  'err-last',  notEmpty);
+        validate(zip,       'err-zip',   validZip);
+        if (!valid) return;
+
+        const existing = (() => { try { return JSON.parse(sessionStorage.getItem('policyOwnerData') || '{}'); } catch { return {}; } })();
+        const formData = {
+          ...existing,
+          firstName:  firstName.value.trim(),
+          mi:         document.getElementById('mi').value.trim(),
+          lastName:   lastName.value.trim(),
+          sex:        document.querySelector('#sex-select .select-value')?.textContent.trim(),
+          zip:        zip.value.trim(),
+          dob:        document.querySelector('.field-display span')?.textContent.trim(),
+          birthState: document.querySelector('#state-select .select-value')?.textContent.trim(),
+        };
+        sessionStorage.setItem('policyOwnerData', JSON.stringify(formData));
+        navigateTo('po-loading.html');
+      });
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       CONFIRM PAGE  (policy-owner-confirm.html)
+    ═══════════════════════════════════════════════════════ */
+    function initConfirmPage() {
+      showSidebarContactCard(false);
+      // Populate profile card from saved form data
+      const data = (() => {
+        try { return JSON.parse(sessionStorage.getItem('policyOwnerData') || '{}'); } catch { return {}; }
+      })();
+      if (data.firstName || data.lastName) {
+        const first    = (data.firstName || '').trim();
+        const mi       = (data.mi || '').trim();
+        const last     = (data.lastName  || '').trim();
+        const fullName = [first, mi, last].filter(Boolean).join(' ');
+        const initials = [(first[0] || ''), (last[0] || '')].join('').toUpperCase();
+        const nameEl = document.getElementById('profile-name');
+        const initEl = document.getElementById('profile-initials');
+        if (nameEl) nameEl.textContent = fullName || 'Mike Ross';
+        if (initEl) initEl.textContent = initials || 'MR';
+      }
+      if (data.email) { const el = document.getElementById('profile-email'); if (el) el.textContent = data.email; }
+      if (data.sex) { const el = document.getElementById('profile-sex'); if (el) el.textContent = data.sex; }
+      if (data.dob) { const el = document.getElementById('profile-dob'); if (el) el.textContent = data.dob; }
+
+      // Address radio cards + manual form toggle
+      const addressCards = document.querySelectorAll('.address-card');
+      const manualForm = document.getElementById('manual-address-form');
+      addressCards.forEach(card => {
+        card.addEventListener('click', () => {
+          addressCards.forEach(c => { c.classList.remove('selected'); c.setAttribute('aria-checked', 'false'); });
+          card.classList.add('selected');
+          card.setAttribute('aria-checked', 'true');
+          if (manualForm) {
+            if (card.dataset.addr === 'manual') {
+              manualForm.classList.add('open');
+            } else {
+              manualForm.classList.remove('open');
+            }
+          }
+        });
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+        });
+      });
+
+      // Populate address state dropdown from shared US_STATES constant
+      const addrStateOptions = document.getElementById('addr-state-options');
+      if (addrStateOptions) {
+        addrStateOptions.innerHTML = '';
+        US_STATES.forEach(([abbr, name]) => {
+          const el = document.createElement('div');
+          el.className = 'custom-select-option';
+          el.dataset.value = abbr;
+          el.textContent = `${name} (${abbr})`;
+          addrStateOptions.appendChild(el);
+        });
+      }
+
+      // Citizenship + address state dropdowns
+      initCustomSelects();
+
+      // SSN edit toggle
+      const ssnInput  = document.getElementById('ssn-input');
+      const ssnEditBtn = document.getElementById('ssn-edit-btn');
+      let ssnEditing = false;
+      function toggleSsn() {
+        ssnEditing = !ssnEditing;
+        ssnInput.disabled = !ssnEditing;
+        if (ssnEditing) { ssnInput.focus(); ssnInput.select(); ssnEditBtn.style.opacity = '1'; }
+        else { ssnEditBtn.style.opacity = '0.7'; }
+      }
+      if (ssnEditBtn) {
+        ssnEditBtn.addEventListener('click', toggleSsn);
+        ssnEditBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleSsn(); } });
+      }
+      if (ssnInput) {
+        ssnInput.addEventListener('input', function () {
+          if (!ssnEditing) return;
+          let raw = this.value.replace(/\D/g, '').slice(0, 9);
+          if (raw.length > 5) raw = raw.slice(0,3) + '-' + raw.slice(3,5) + '-' + raw.slice(5);
+          else if (raw.length > 3) raw = raw.slice(0,3) + '-' + raw.slice(3);
+          this.value = raw;
+        });
+      }
+
+      // Continue — validate manual address if selected, then navigate
+      // Use onclick so re-navigation never stacks duplicate listeners
+      const confirmContinue = document.getElementById('confirm-continue');
+      if (confirmContinue) {
+        confirmContinue.onclick = function() {
+          const isManual = document.querySelector('.address-card[data-addr="manual"]')?.classList.contains('selected');
+          if (isManual) {
+            const street   = document.getElementById('manual-street');
+            const zip      = document.getElementById('manual-zip');
+            const city     = document.getElementById('manual-city');
+            const stateSel = document.getElementById('state-select');
+            const stateVal = stateSel ? stateSel.querySelector('.select-value') : null;
+            let hasError = false;
+
+            const markField = (el, isErr) => {
+              if (!el) return;
+              if (isErr) {
+                el.classList.add('error');
+                el.style.borderColor = '#d92d20';
+                el.style.boxShadow = '0 0 0 4px rgba(217,45,32,0.12)';
+                let msg = el.parentElement.querySelector('.field-error-msg');
+                if (!msg) {
+                  msg = document.createElement('p');
+                  msg.className = 'field-error-msg error-msg';
+                  el.parentElement.appendChild(msg);
+                }
+                msg.textContent = 'This field is required';
+                el.addEventListener('input', () => markField(el, false), { once: true });
+              } else {
+                el.classList.remove('error');
+                el.style.borderColor = '';
+                el.style.boxShadow = '';
+                const msg = el.parentElement.querySelector('.field-error-msg');
+                if (msg) msg.remove();
+              }
+            };
+
+            const markSelect = (sel, isErr) => {
+              if (!sel) return;
+              const trigger = sel.querySelector('.custom-select-trigger');
+              if (isErr) {
+                sel.classList.add('error');
+                if (trigger) { trigger.style.borderColor = '#d92d20'; trigger.style.boxShadow = '0 0 0 4px rgba(217,45,32,0.12)'; }
+                let msg = sel.parentElement.querySelector('.field-error-msg');
+                if (!msg) {
+                  msg = document.createElement('p');
+                  msg.className = 'field-error-msg error-msg';
+                  sel.parentElement.appendChild(msg);
+                }
+                msg.textContent = 'Please select a state';
+                sel.querySelectorAll('.custom-select-option').forEach(o =>
+                  o.addEventListener('click', () => markSelect(sel, false), { once: true })
+                );
+              } else {
+                sel.classList.remove('error');
+                if (trigger) { trigger.style.borderColor = ''; trigger.style.boxShadow = ''; }
+                const msg = sel.parentElement.querySelector('.field-error-msg');
+                if (msg) msg.remove();
+              }
+            };
+
+            const empty = el => !el || !el.value || !el.value.trim();
+            if (empty(street)) { markField(street, true); hasError = true; } else markField(street, false);
+            if (empty(zip))    { markField(zip,    true); hasError = true; } else markField(zip,    false);
+            if (empty(city))   { markField(city,   true); hasError = true; } else markField(city,   false);
+
+            const noState = !stateVal || stateVal.textContent.trim() === 'Select state';
+            markSelect(stateSel, noState);
+            if (noState) hasError = true;
+
+            if (hasError) return;
+          }
+          navigateTo('po-mobile.html');
+        };
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       STEP 1 — PLEDGE
+    ═══════════════════════════════════════════════════════ */
+    function initStep1() {
+      showSidebarContactCard(false);
+      const checkbox = document.getElementById('pledge-agree');
+      const box      = document.getElementById('pledge-checkbox-box');
+      const btn      = document.getElementById('btn-get-started');
+      if (!btn) return;
+
+      // Toggle checkbox on label click
+      if (checkbox && box) {
+        checkbox.addEventListener('change', () => {
+          btn.disabled = !checkbox.checked;
+          btn.classList.toggle('btn-disabled', !checkbox.checked);
+        });
+      }
+
+      // Initially disabled
+      btn.disabled = true;
+      btn.classList.add('btn-disabled');
+
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        // Clear any stale form data from a previous session so the new journey starts fresh
+        sessionStorage.removeItem('policyOwnerData');
+        navigateTo('po-email.html');
+      });
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       STEP 2 — EMAIL
+    ═══════════════════════════════════════════════════════ */
+    function initStep2() {
+      showSidebarContactCard(false);
+      const btn = document.getElementById('btn-step2-continue');
+      const emailInput = document.getElementById('email');
+      if (!btn) return;
+
+      // Restore email from session if coming back
+      const saved = (() => { try { return JSON.parse(sessionStorage.getItem('policyOwnerData') || 'null'); } catch { return null; } })();
+      if (saved?.email && emailInput) emailInput.value = saved.email;
+
+      btn.addEventListener('click', () => {
+        const email = emailInput?.value.trim() || '';
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          emailInput?.classList.add('error');
+          return;
+        }
+        emailInput?.classList.remove('error');
+        // Save email
+        const data = JSON.parse(sessionStorage.getItem('policyOwnerData') || '{}');
+        data.email = email;
+        sessionStorage.setItem('policyOwnerData', JSON.stringify(data));
+        navigateTo('po-form.html');
+      });
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       STEP 4 — LOADING
+    ═══════════════════════════════════════════════════════ */
+    function initStep4() {
+      showSidebarContactCard(false);
+      const bar1 = document.getElementById('task-bar-1');
+      const pct1 = document.getElementById('task-pct-1');
+      const task2 = document.getElementById('loading-task-2');
+      const bar2 = document.getElementById('task-bar-2');
+      if (!bar1) return;
+
+      let progress = 0;
+      const timer = setInterval(() => {
+        progress += 4;
+        if (bar1) bar1.style.width = Math.min(progress, 100) + '%';
+        if (pct1) pct1.textContent = Math.min(progress, 100) + '%';
+        if (progress >= 100) {
+          clearInterval(timer);
+          if (task2) task2.style.opacity = '1';
+          // Start second bar
+          let p2 = 0;
+          const timer2 = setInterval(() => {
+            p2 += 8;
+            if (bar2) bar2.style.width = Math.min(p2, 100) + '%';
+            if (p2 >= 100) {
+              clearInterval(timer2);
+              setTimeout(() => navigateTo('policy-owner-confirm.html'), 400);
+            }
+          }, 120);
+        }
+      }, 100);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       SIDEBAR CONTACT CARD HELPER
+    ═══════════════════════════════════════════════════════ */
+    function showSidebarContactCard(show) {
+      const card    = document.getElementById('policy-owner-contact-card');
+      const sidebar = document.querySelector('.sidebar');
+      if (!card) return;
+      if (show) {
+        const data = (() => {
+          try { return JSON.parse(sessionStorage.getItem('policyOwnerData') || '{}'); } catch { return {}; }
+        })();
+        const first    = (data.firstName || '').trim();
+        const mi       = (data.mi || '').trim();
+        const last     = (data.lastName  || '').trim();
+        const fullName = [first, mi, last].filter(Boolean).join(' ') || 'Policy Owner';
+        const initials = [(first[0] || ''), (last[0] || '')].filter(Boolean).join('').toUpperCase() || 'PO';
+        const nameEl  = document.getElementById('sidebar-po-name');
+        const emailEl = document.getElementById('sidebar-po-email');
+        if (nameEl)  nameEl.textContent  = fullName;
+        if (emailEl) emailEl.textContent = data.email || '—';
+        card.style.display = 'flex';
+        sidebar?.classList.add('has-contact-card');
+      } else {
+        card.style.display = 'none';
+        sidebar?.classList.remove('has-contact-card');
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       STEP 6 — MOBILE
+    ═══════════════════════════════════════════════════════ */
+    function initStep6() {
+      showSidebarContactCard(true);
+      const cards      = document.querySelectorAll('#mobile-options .address-card');
+      const btn        = document.getElementById('btn-mobile-continue');
+      const manualForm = document.getElementById('manual-mobile-form');
+      const phoneInput = document.getElementById('manual-phone');
+      if (!btn) return;
+
+      function selectCard(card) {
+        cards.forEach(c => {
+          c.classList.remove('selected');
+          const inner = c.querySelector('.addr-radio-inner');
+          if (inner) inner.style.background = 'transparent';
+        });
+        card.classList.add('selected');
+        const inner = card.querySelector('.addr-radio-inner');
+        if (inner) inner.style.background = '#056257';
+
+        const isManual = card.dataset.mobile === 'manual';
+        if (manualForm) {
+          if (isManual) manualForm.classList.add('open');
+          else          manualForm.classList.remove('open');
+        }
+        // Enable continue: manual needs a phone value, others enable immediately
+        if (isManual) {
+          const hasPhone = phoneInput && phoneInput.value.trim().length > 0;
+          btn.disabled = !hasPhone;
+          btn.classList.toggle('btn-disabled', !hasPhone);
+        } else {
+          btn.disabled = false;
+          btn.classList.remove('btn-disabled');
+        }
+      }
+
+      cards.forEach(card => { card.onclick = () => selectCard(card); });
+
+      // Re-check button state on manual input
+      if (phoneInput) {
+        phoneInput.addEventListener('input', () => {
+          const isManualSelected = document.querySelector('.address-card[data-mobile="manual"]')?.classList.contains('selected');
+          if (isManualSelected) {
+            const hasPhone = phoneInput.value.trim().length > 0;
+            btn.disabled = !hasPhone;
+            btn.classList.toggle('btn-disabled', !hasPhone);
+            // Clear error state on input
+            phoneInput.style.borderColor = '';
+            phoneInput.style.boxShadow   = '';
+          }
+        });
+      }
+
+      btn.onclick = function() {
+        if (btn.disabled) return;
+        const selectedCard = document.querySelector('#mobile-options .address-card.selected');
+        if (!selectedCard) return;
+
+        const isManual = selectedCard.dataset.mobile === 'manual';
+        let displayNumber;
+
+        // Returns "(***) ***-XXXX" — only last 4 digits visible
+        function maskPhone(raw) {
+          const digits = raw.replace(/\D/g, '');
+          const last4  = digits.slice(-4).padStart(4, '*');
+          return `(***) ***-${last4}`;
+        }
+
+        if (isManual) {
+          const phone = phoneInput ? phoneInput.value.trim() : '';
+          if (!phone) {
+            if (phoneInput) {
+              phoneInput.style.borderColor = '#d92d20';
+              phoneInput.style.boxShadow   = '0 0 0 4px rgba(217,45,32,0.12)';
+            }
+            return;
+          }
+          displayNumber = maskPhone(phone);
+        } else {
+          // Preset options already masked, but re-derive from data-display for consistency
+          displayNumber = maskPhone(selectedCard.dataset.display || selectedCard.querySelector('.addr-label')?.textContent || '0000');
+        }
+
+        // Persist for OTP step
+        try {
+          const data = JSON.parse(sessionStorage.getItem('policyOwnerData') || '{}');
+          data.selectedMobile = displayNumber;
+          sessionStorage.setItem('policyOwnerData', JSON.stringify(data));
+        } catch(e) {}
+
+        navigateTo('po-otp.html');
+      };
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       STEP 7 — OTP
+    ═══════════════════════════════════════════════════════ */
+    function initStep7() {
+      showSidebarContactCard(true);
+
+      // Populate selected mobile number from step 6
+      try {
+        const data   = JSON.parse(sessionStorage.getItem('policyOwnerData') || '{}');
+        const mobile = data.selectedMobile || '***-**-9999';
+        const el1 = document.getElementById('otp-mobile-number');
+        const el2 = document.getElementById('otp-mobile-number-2');
+        if (el1) el1.textContent = mobile;
+        if (el2) el2.textContent = mobile;
+      } catch(e) {}
+
+      // OTP inputs: auto-advance focus
+      const boxes = document.querySelectorAll('.otp-box');
+      boxes.forEach((box, i) => {
+        box.addEventListener('input', e => {
+          const val = e.target.value.replace(/\D/g, '');
+          e.target.value = val.slice(-1);
+          if (val && i < boxes.length - 1) boxes[i + 1].focus();
+        });
+        box.addEventListener('keydown', e => {
+          if (e.key === 'Backspace' && !box.value && i > 0) boxes[i - 1].focus();
+        });
+      });
+
+      // Countdown timer
+      let seconds = 299;
+      const display = document.getElementById('otp-countdown');
+      const tick = setInterval(() => {
+        if (!document.getElementById('otp-countdown')) { clearInterval(tick); return; }
+        seconds--;
+        if (seconds <= 0) { clearInterval(tick); if (display) display.textContent = 'Code expired'; return; }
+        const m = Math.floor(seconds / 60), s = seconds % 60;
+        if (display) display.textContent = `Your code will expire in ${m}:${s.toString().padStart(2,'0')}`;
+      }, 1000);
+
+      // Disclosure accordion
+      const toggle = document.getElementById('disclosure-toggle');
+      const body   = document.getElementById('disclosure-body');
+      const chevron = document.getElementById('disclosure-chevron');
+      if (toggle && body) {
+        toggle.addEventListener('click', () => {
+          const open = body.style.display !== 'none';
+          body.style.display = open ? 'none' : 'block';
+          if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       SPA NAVIGATION  — swaps content, calls correct init
+    ═══════════════════════════════════════════════════════ */
+    // Progress widths per page (extend as new steps are added)
+    const PAGE_PROGRESS = {
+      'policy-owner.html':          '0%',
+      'po-email.html':              '14%',
+      'po-form.html':               '28%',
+      'po-loading.html':            '43%',
+      'policy-owner-confirm.html':  '57%',
+      'po-mobile.html':             '71%',
+      'po-otp.html':                '100%',
+    };
+
+    // Ordered list used to determine slide direction (forward vs back)
+    const PAGE_ORDER = [
+      'policy-owner.html',
+      'po-email.html',
+      'po-form.html',
+      'po-loading.html',
+      'policy-owner-confirm.html',
+      'po-mobile.html',
+      'po-otp.html',
+    ];
+
+    function setProgress(width, animate) {
+      const track = document.getElementById('global-progress');
+      const fill = document.querySelector('.progress-fill');
+      if (!fill) return;
+      // Hide the progress track entirely on step 1 (0%)
+      if (track) track.style.visibility = (width === '0%') ? 'hidden' : 'visible';
+      if (!animate) {
+        fill.style.transition = 'none';
+        fill.style.width = width;
+        void fill.offsetHeight; // flush reflow so transition re-enables cleanly
+      } else {
+        fill.style.transition = 'width 0.55s cubic-bezier(0.4, 0, 0.2, 1)';
+        fill.style.width = width;
+      }
+    }
+
+    async function navigateTo(url) {
+      const stack = document.querySelector('.content-stack');
+
+      // Determine slide direction: forward (+1) slides left, back (-1) slides right
+      const curPage = (stack.dataset.page || 'policy-owner.html').split('/').pop();
+      const nextPage = url.split('/').pop();
+      const curIdx  = PAGE_ORDER.indexOf(curPage);
+      const nextIdx = PAGE_ORDER.indexOf(nextPage);
+      const dir = (nextIdx >= curIdx) ? 1 : -1; // 1 = forward, -1 = backward
+      const SLIDE = 32; // px offset for the slide
+
+      // Snapshot current progress width before we tear down the DOM
+      const oldFill = document.querySelector('.progress-fill');
+      const oldWidth = oldFill ? oldFill.getBoundingClientRect().width / oldFill.parentElement.getBoundingClientRect().width * 100 + '%' : '0%';
+
+      // ── Animate OUT ──────────────────────────────────────────
+      // Current content accelerates away in the forward direction (ease-in)
+      stack.style.transition = 'opacity 0.2s cubic-bezier(0.4,0,1,1), transform 0.2s cubic-bezier(0.4,0,1,1)';
+      stack.style.opacity    = '0';
+      stack.style.transform  = `translateX(${dir * -SLIDE}px)`;
+      await new Promise(r => setTimeout(r, 200));
+
+      try {
+        const res  = await fetch(url, { cache: 'no-store' });
+        const html = await res.text();
+        const doc  = new DOMParser().parseFromString(html, 'text/html');
+        const newStack = doc.querySelector('.content-stack');
+        // Full-page files → extract .content-stack; partial files → use body directly
+        stack.innerHTML = newStack ? newStack.innerHTML : doc.body.innerHTML;
+        stack.dataset.page = nextPage;
+
+        // Pin fill at old width (no transition) so the next rAF can animate forward
+        setProgress(oldWidth, false);
+
+        history.pushState({ url }, '', url);
+        window.scrollTo(0, 0);
+
+        // Call the correct init — no script injection needed
+        try {
+          const page = nextPage;
+          if      (page === 'policy-owner.html')         initStep1();
+          else if (page === 'po-email.html')             initStep2();
+          else if (page === 'po-form.html')              initFormPage();
+          else if (page === 'po-loading.html')           initStep4();
+          else if (page === 'policy-owner-confirm.html') initConfirmPage();
+          else if (page === 'po-mobile.html')            initStep6();
+          else if (page === 'po-otp.html')               initStep7();
+        } catch (initErr) { console.error('[init] error for', nextPage, initErr); }
+
+        // Animate progress bar to new step width on the next paint
+        const targetWidth = PAGE_PROGRESS[nextPage] || '0%';
+        requestAnimationFrame(() => requestAnimationFrame(() => setProgress(targetWidth, true)));
+
+      } catch (err) { console.error('[navigateTo] error loading', url, err); }
+
+      // ── Animate IN ───────────────────────────────────────────
+      // New content starts offset in the opposite direction, then decelerates into place (ease-out)
+      stack.style.transition = 'none';
+      stack.style.opacity    = '0';
+      stack.style.transform  = `translateX(${dir * SLIDE}px)`;
+      void stack.offsetHeight; // force reflow so transition:none takes effect
+      stack.style.transition = 'opacity 0.28s cubic-bezier(0,0,0.2,1), transform 0.28s cubic-bezier(0,0,0.2,1)';
+      stack.style.opacity    = '1';
+      stack.style.transform  = 'translateX(0)';
+    }
+
+    window.addEventListener('popstate', e => {
+      if (e.state?.url) {
+        navigateTo(e.state.url);
+      } else {
+        // No SPA state — redirect to shell so partial files don't load raw
+        window.location.replace('policy-owner.html');
+      }
+    });
+
+    /* ── Bootstrap ────────────────────────────────────── */
+    document.querySelector('.content-stack').dataset.page = 'policy-owner.html';
+    initStep1();
+    // Set initial progress with a short delay so the CSS transition plays on load
+    requestAnimationFrame(() => requestAnimationFrame(() =>
+      setProgress(PAGE_PROGRESS['policy-owner.html'], true)
+    ));
+  </script>
+
+</body>
+</html>

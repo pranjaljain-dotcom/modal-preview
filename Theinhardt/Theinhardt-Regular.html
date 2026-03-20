@@ -1,0 +1,1562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+    <meta content="en-us" http-equiv="Content-Language"/>
+    <title>Theinhardt® Regular - Web Font Specimen</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="Theinhardt-Regular.css" />
+    <style>
+        body {font-family: "Theinhardt"; margin: 20px 30px 30px 30px; width: 800px; outline: none;  text-rendering:optimizeLegibility;}
+        h1 {font-size: 100px; line-height: 100px; border: 0px solid #000; font-weight: inherit; margin-top: 10px;margin-bottom: 15px;}
+        h2 {font-size: 33px; line-height: 38px; border: 0px solid #000; font-weight: inherit; margin-top: 15px;margin-bottom: 15px;}
+        h3 {font-size: 16px; line-height: 22px; border: 0px solid #000; font-weight: inherit; margin-top: 15px;margin-bottom: 15px;}
+        p {font-size: 10px; line-height: 14px; border: 0px solid #000; font-weight: inherit; margin-top: 15px;margin-bottom: 15px; letter-spacing: 0.03em; -webkit-column-count: 2; -moz-column-count: 2; column-count: 2;}    
+        .filet {float: left; width: 100%; margin: 20px 0px 0px 0px;  border-top: 1px solid rgba(0, 0, 0, 0.3); font-size: 6px;}
+        .txt { font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 15px; font-style: normal; color: #999999; width: auto; margin-bottom: 15px;}
+        .tab {overflow: hidden; border-bottom: 1px solid #b9b9b9;}
+        .tab button {font-size: 12px; font-family: Helvetica, Arial, sans-serif; font-style: normal; color: #999999; margin-bottom: 0px;float: left; margin-right: 20px; margin-left:5px; padding: 6px 0px 6px 0px;color: #999999;cursor: pointer;border: 0;background-color: #fff;border-radius: 1px; z-index:10;}
+        .tab button:hover {opacity: .5;z-index:11;}
+        .tab button.active {background-color: none;color: #000; outline:none;z-index:12;}
+        .tabcontent {display: none; background-color: none;}
+        a, a:link, a:visited, a:hover, a:active {color:inherit; text-decoration: none;}    
+/* CHARACTER MAP *****************************************************************************************************************************/
+        .cell { width: 30px;  height: 30px;  padding: 7px 6px 5px 6px;  text-align: center; font-size: 28px;  background-color: rgba(143,217,247,0.5); line-height: 1em; opacity: 1; display:inline-block; *display:inline;zoom:1; margin-top:4px; outline:none;}
+        .cell:hover { opacity: 0.5; cursor:pointer; clear:none;}
+        input { position: absolute; opacity: 0; z-index: -1;}
+        label { position: relative; display: block; padding: 7px 5px 5px 5px; font-size: 12px;  font-family: Helvetica, Arial, sans-serif;  font-style: normal;  color: #999999; line-height: 1em; cursor: inherit;}
+        input:checked ~ .tab-content { max-height: 100em;}
+        .popover{ position:absolute; top:0; left:0; display:none; max-width:150px; padding:0px; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 400; font-size:11px; color: rgba(0,0,0,0.3); background-color:#fff; border:1px solid rgba(0,0,0,.2); border-radius:4px; -webkit-box-shadow:0 5px 10px rgba(0,0,0,.2); box-shadow:0 5px 10px rgba(0,0,0,.2); z-index:99999;}
+        .popover-title{ padding: 7px 7px; margin:0; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 400; font-size:11px; line-height: 13px; color: rgba(0,0,0,0.7); background-color: #fff; border-bottom:/* separation */ 1px solid #ebebeb; border-radius:4px 4px 0 0; z-index:99999;}
+        .popover.top{ margin-top:-10px}
+        .popover.right{ margin-left:10px}
+        .popover.bottom{ margin-top:10px}
+        .popover.left{ margin-left:-10px}
+        .popover-content{ padding:7px 7px;}
+        .popover>.arrow,.popover>.arrow:after{ position:absolute; display:block; width:0; height:0; border-color:transparent; border-style:solid}
+        .popover>.arrow{ border-width:11px}
+        .popover>.arrow:after{content:"";  border-width:10px}
+        .popover.top>.arrow{ bottom:-11px; left:50%; margin-left:-11px; border-top-color:#999; border-top-color:rgba(0,0,0,.25); border-bottom-width:0}
+        .popover.top>.arrow:after{bottom:1px; margin-left:-10px; content:" "; border-top-color:#fff; border-bottom-width:0}
+        .popover.right>.arrow{ top:50%; left:-11px; margin-top:-11px; border-right-color:#999; border-right-color:rgba(0,0,0,.25); border-left-width:0}
+        .popover.right>.arrow:after{ bottom:-10px; left:1px; content:" "; border-right-color:#fff; border-left-width:0}
+        .popover.bottom>.arrow{ top:-11px; left:50%; margin-left:-11px; border-top-width:0; border-bottom-color:#999; border-bottom-color:rgba(0,0,0,.25)}
+        .popover.bottom>.arrow:after{ top:1px; margin-left:-10px; content:" "; border-top-width:0; border-bottom-color:#fff}
+        .popover.left>.arrow{ top:50%; right:-11px; margin-top:-11px; border-right-width:0; border-left-color:#999; border-left-color:rgba(0,0,0,.25)}
+        .popover.left>.arrow:after{ right:1px; bottom:-10px; content:" "; border-right-width:0; border-left-color:#fff}
+/* OPENTYPE FEATURES *****************************************************************************************************************************/
+        txtkern,txtcase,txtcpsp,txtcalt,txtliga,txtdlig,txthist,txtpnum,txttnum,txtonum,txttonum,txtnumr,txtdnom, txtfrac, txtafrc, txtsups, txtsubs, txtordn, txtzero, txtss01, txtss02, txtss03, txtss04, txtss05, txtss06, txtss07, txtss08, txtss09, txtss10, txtss11, txtss12, txtss13, txtss14, txtss15, txtss16, txtss17, txtss18, txtss19, txtss20 {font-size: 12px;line-height:  12px;font-style: normal;font-family: Helvetica, Arial, sans-serif;color: #00e500; padding-left: 24px;cursor: pointer;}
+        highlightkern, highlightcase, highlightcpsp, highlightcalt, highlightliga, highlightdlig, highlighthist, highlightpnum, highlighttnum, highlightonum, highlightnumr, highlightdnom, highlightfrac, highlightafrc, highlightsups, highlightsubs, highlightordn, highlightzero, highlightss01, highlightss02, highlightss03, highlightss04, highlightss05, highlightss06, highlightss07, highlightss08, highlightss09, highlightss10, highlightss11, highlightss12, highlightss13, highlightss14, highlightss15, highlightss16, highlightss17, highlightss18, highlightss19, highlightss20 {
+        background-color: rgba(143,217,247,0.5);}
+        kern, case, cpsp, calt, liga, dlig, hist, pnum, tnum, onum, tonum, numr, smcp, c2sc, sinf, sinf, dnom, frac, afrc, sups, subs, ordn, zero, swsh, salt, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, ss10, ss11, ss12, ss13, ss14, ss15, ss16, ss17, ss18, ss19, ss20 
+        {font-size: 42px; line-height: 46px; font-family: "Theinhardt";}        
+        kern {font-kerning: normal;font-variant-ligatures: no-common-ligatures no-contextual;font-variant-ligatures: no-discretionary-ligatures;font-feature-settings: "kern" on;-moz-font-feature-settings: "kern" on;-webkit-font-feature-settings: "kern" on;-ms-font-feature-settings: "kern" on;-o-font-feature-settings: "kern" on;}
+        case {font-kerning: normal;font-variant-ligatures: no-common-ligatures no-contextual;font-variant-ligatures: no-discretionary-ligatures;font-feature-settings: "case" on;-moz-font-feature-settings: "case" on;-webkit-font-feature-settings: "case" on;-ms-font-feature-settings: "case" on;-o-font-feature-settings: "case" on;}
+        cpsp {font-kerning: normal;font-variant-ligatures: no-common-ligatures no-contextual;font-variant-ligatures: no-discretionary-ligatures;font-feature-settings: "cpsp" on;-moz-font-feature-settings: "cpsp" on;-webkit-font-feature-settings: "cpsp" on;-ms-font-feature-settings: "cpsp" on;-o-font-feature-settings: "cpsp" on;}            
+        calt {font-kerning: normal;font-variant-ligatures: no-common-ligatures no-contextual;font-variant-ligatures: no-discretionary-ligatures;font-feature-settings: "calt" on;-moz-font-feature-settings: "calt" on;-webkit-font-feature-settings: "calt" on;-ms-font-feature-settings: "calt" on;-o-font-feature-settings: "calt" on;}            
+        liga {font-kerning: normal;font-variant-ligatures: none no-contextual;font-variant-ligatures: no-discretionary-ligatures;font-feature-settings: "liga" on;-moz-font-feature-settings: "liga" on;-webkit-font-feature-settings: "liga" on;-ms-font-feature-settings: "liga" on;-o-font-feature-settings: "liga" on;}
+        dlig {font-kerning: normal;font-variant-ligatures: none no-contextual;font-variant-ligatures: no-discretionary-ligatures;font-feature-settings: "dlig" on;-moz-font-feature-settings: "dlig" on;-webkit-font-feature-settings: "dlig" on;-ms-font-feature-settings: "dlig" on;-o-font-feature-settings: "dlig" on;}
+        hist {font-kerning: normal;font-variant-ligatures: none no-contextual;font-variant-ligatures: no-discretionary-ligatures;font-variant-alternates: historical-forms;-moz-font-feature-settings: "hist" on;-webkit-font-feature-settings: "hist" on;font-feature-settings: "hist" on; -o-font-variant-alternates: "hist" on;}
+        tnum {font-variant-numeric: tabular-nums;-moz-font-feature-settings: "tnum" on;-webkit-font-feature-settings: "tnum" on;-ms-font-feature-settings: "tnum" on;-o-font-feature-settings: "tnum" on;font-feature-settings: "tnum" on;}
+        onum {font-variant-numeric: oldstyle-nums;-moz-font-feature-settings: "onum" on;-webkit-font-feature-settings: "onum" on;-ms-font-feature-settings: "onum" on;-o-font-feature-settings: "onum" on;font-feature-settings: "onum" on;}
+        tonum {font-variant-numeric: oldstyle-nums tabular-nums;-moz-font-feature-settings: "onum" on "tnum" on;-webkit-font-feature-settings: "onum" on "tnum" on;-ms-font-feature-settings: "onum" on "tnum" on;-o-font-feature-settings: "onum" on "tnum" on;font-feature-settings: "onum" on "tnum" on;}
+        numr {-moz-font-feature-settings: "numr" on;-webkit-font-feature-settings: "numr" on;-ms-font-feature-settings: "numr" on;-o-font-feature-settings: "numr" on;font-feature-settings: "numr" on;}
+        dnom {-moz-font-feature-settings: "dnom" on;-webkit-font-feature-settings: "dnom" on;-ms-font-feature-settings: "dnom" on;-o-font-feature-settings: "dnom" on;font-feature-settings: "dnom" on;}
+        frac {font-variant-numeric: diagonal-fractions; -moz-font-feature-settings: "frac" on;-webkit-font-feature-settings: "frac" on;-ms-font-feature-settings: "frac" on;-o-font-feature-settings: "frac" on;font-feature-settings: "frac" on;}
+        afrc {font-variant-numeric: stacked-fractions; -moz-font-feature-settings: "afrc" on;-webkit-font-feature-settings: "afrc" on;-ms-font-feature-settings: "afrc" on;-o-font-feature-settings: "afrc" on;font-feature-settings: "afrc" on;}
+        sups {-moz-font-feature-settings: "sups" on;-webkit-font-feature-settings: "sups" on;-ms-font-feature-settings: "sups" on;-o-font-feature-settings: "sups" on;font-feature-settings: "sups" on;}
+        subs {-moz-font-feature-settings: "subs" on;-webkit-font-feature-settings: "subs" on;-ms-font-feature-settings: "subs" on;-o-font-feature-settings: "subs" on;font-feature-settings: "subs" on;}
+        ordn {font-variant-numeric: ordinal;-moz-font-feature-settings: 'frac' on;-webkit-font-feature-settings: 'frac' on;-ms-font-feature-settings: 'ordn' on;-o-font-feature-settings: 'ordn' on;font-feature-settings: 'ordn' on;}
+        zero {font-variant-numeric: slashed-zero;-moz-font-feature-settings: "zero" on;-moz-font-feature-settings: "zero" on;-ms-font-feature-settings: "zero" on;-o-font-feature-settings: "zero" on;-webkit-font-feature-settings: "zero" on;font-feature-settings: "zero" on;}            
+        ss01 {-moz-font-feature-settings: "ss01" on;-ms-font-feature-settings: "ss01" on;-o-font-feature-settings: "ss01" on;-webkit-font-feature-settings: "ss01" on;font-feature-settings: "ss01" on;}            
+        ss02 {-moz-font-feature-settings: "ss02" on;-ms-font-feature-settings: "ss02" on;-o-font-feature-settings: "ss02" on;-webkit-font-feature-settings: "ss02" on;font-feature-settings: "ss02" on;}            
+        ss03 {-moz-font-feature-settings: "ss03" on;-ms-font-feature-settings: "ss03" on;-o-font-feature-settings: "ss03" on;-webkit-font-feature-settings: "ss03" on;font-feature-settings: "ss03" on;}            
+        ss04 {-moz-font-feature-settings: "ss04" on;-ms-font-feature-settings: "ss04" on;-o-font-feature-settings: "ss04" on;-webkit-font-feature-settings: "ss04" on;font-feature-settings: "ss04" on;}            
+        ss05 {-moz-font-feature-settings: "ss05" on;-ms-font-feature-settings: "ss05" on;-o-font-feature-settings: "ss05" on;-webkit-font-feature-settings: "ss05" on;font-feature-settings: "ss05" on;}            
+        ss06 {-moz-font-feature-settings: "ss06" on;-ms-font-feature-settings: "ss06" on;-o-font-feature-settings: "ss06" on;-webkit-font-feature-settings: "ss06" on;font-feature-settings: "ss06" on;}            
+        ss07 {-moz-font-feature-settings: "ss07" on;-ms-font-feature-settings: "ss07" on;-o-font-feature-settings: "ss07" on;-webkit-font-feature-settings: "ss07" on;font-feature-settings: "ss07" on;}            
+        ss08 {-moz-font-feature-settings: "ss08" on;-ms-font-feature-settings: "ss08" on;-o-font-feature-settings: "ss08" on;-webkit-font-feature-settings: "ss08" on;font-feature-settings: "ss08" on;}            
+        ss09 {-moz-font-feature-settings: "ss09" on;-ms-font-feature-settings: "ss09" on;-o-font-feature-settings: "ss09" on;-webkit-font-feature-settings: "ss09" on;font-feature-settings: "ss09" on;}            
+        ss10 {-moz-font-feature-settings: "ss10" on;-ms-font-feature-settings: "ss10" on;-o-font-feature-settings: "ss10" on;-webkit-font-feature-settings: "ss10" on;font-feature-settings: "ss10" on;}            
+        ss11 {-moz-font-feature-settings: "ss11" on;-ms-font-feature-settings: "ss11" on;-o-font-feature-settings: "ss11" on;-webkit-font-feature-settings: "ss11" on;font-feature-settings: "ss11" on;}            
+        ss12 {-moz-font-feature-settings: "ss12" on;-ms-font-feature-settings: "ss12" on;-o-font-feature-settings: "ss12" on;-webkit-font-feature-settings: "ss12" on;font-feature-settings: "ss12" on;}            
+        ss13 {-moz-font-feature-settings: "ss13" on;-ms-font-feature-settings: "ss13" on;-o-font-feature-settings: "ss13" on;-webkit-font-feature-settings: "ss13" on;font-feature-settings: "ss13" on;}            
+        ss14 {-moz-font-feature-settings: "ss14" on;-ms-font-feature-settings: "ss14" on;-o-font-feature-settings: "ss14" on;-webkit-font-feature-settings: "ss14" on;font-feature-settings: "ss14" on;}            
+        ss15 {-moz-font-feature-settings: "ss15" on;-ms-font-feature-settings: "ss15" on;-o-font-feature-settings: "ss15" on;-webkit-font-feature-settings: "ss15" on;font-feature-settings: "ss15" on;}            
+        ss16 {-moz-font-feature-settings: "ss16" on;-ms-font-feature-settings: "ss16" on;-o-font-feature-settings: "ss16" on;-webkit-font-feature-settings: "ss16" on;font-feature-settings: "ss16" on;}            
+        ss17 {-moz-font-feature-settings: "ss17" on;-ms-font-feature-settings: "ss17" on;-o-font-feature-settings: "ss17" on;-webkit-font-feature-settings: "ss17" on;font-feature-settings: "ss17" on;}            
+        ss18 {-moz-font-feature-settings: "ss18" on;-ms-font-feature-settings: "ss18" on;-o-font-feature-settings: "ss18" on;-webkit-font-feature-settings: "ss18" on;font-feature-settings: "ss18" on;}            
+        ss19 {-moz-font-feature-settings: "ss19" on;-ms-font-feature-settings: "ss19" on;-o-font-feature-settings: "ss19" on;-webkit-font-feature-settings: "ss19" on;font-feature-settings: "ss19" on;}            
+        ss20 {-moz-font-feature-settings: "ss20" on;-ms-font-feature-settings: "ss20" on;-o-font-feature-settings: "ss20" on;-webkit-font-feature-settings: "ss20" on;font-feature-settings: "ss20" on;}            
+
+/* SWITCH */
+        .switch {
+        position: relative; 
+        display: inline-block; 
+        cursor: pointer;   
+        
+        }
+        .switch input {
+        display:none;
+        }
+        .slider {
+        position: absolute; 
+        cursor: pointer;
+        width: 18px; 
+        height: 10px; 
+        background-color: #00e500; 
+        -webkit-transition: .2s; 
+        transition: .2s;
+        }
+        .slider:before {
+        position: absolute;
+        content: ""; 
+        height: 8px; 
+        width: 8px; 
+        left: 9px; 
+        bottom: 1px; 
+        background-color: white; 
+        -webkit-transition: .2s; 
+        transition: .2s; 
+        cursor: pointer;
+        }
+        input:checked + .slider { 
+        background-color: #999; 
+        }
+        input:focus + .slider { 
+        box-shadow: 0 0 1px #999; 
+        }
+        input:checked + .slider:before { 
+        -webkit-transform: translateX(-8px); 
+        -ms-transform: translateX(-8px); 
+        transform: translateX(-8px); 
+        }
+        .slider.round { 
+        border-radius: 6px; 
+        }  
+        .slider.round:before { 
+        border-radius: 50%; 
+        }  
+        .popup {
+        position: absolute;
+        display: inline-block;
+        cursor: help;
+        left: 810px;
+        margin-top: 5px;
+        text-align:right;
+        padding: 0px 0px 0px 0px;
+        font-size: 12px; 
+        font-family: Helvetica, Arial, sans-serif; 
+        font-style: normal; 
+        font-weight: normal;
+        }
+        .popup .popuptext {
+        position: absolute;
+        visibility: hidden;
+        width: 180px;
+        background-color: #555;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 8px;
+        z-index: 999999;
+        left: -100x;
+        margin-left: -191px;
+        }
+        .popup .popuptext::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: 82px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #555 transparent;
+        }
+        .popup .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+        }
+        @-webkit-keyframes fadeIn {
+        from {opacity: 0;} 
+        to {opacity: 1;}
+        }
+        @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity:1 ;}
+        }
+        .infolink:before{content: '?'; display: inline-block;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: normal;text-align: center;width: 10px;height: 10px;font-size: 8px;line-height: 10px; border-radius: 10px; color: white; background: #999; text-decoration: none; padding: 1px;}
+        .infolink:hover:before{opacity: 0.5;cursor: help;}    
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <hr style="border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.3); margin-after:0px;">
+    <div class="txt" style="width:800px; padding-left:5px;">
+        <span style="color:#F40A0A">
+            Optimo Web Specimen
+        </span>
+        <br>
+        <span style="color:#000">
+            Theinhardt® Regular
+        </span>
+        <br>
+        <br>
+        Optimo webfonts are protected by copyright law and provided under license. To modify, alter, translate, convert, decode or reverse engineer in any manner whatsoever, including converting the Font Software into a different format is strictly prohibited. The webfont files are not to be used for anything other than web font use.
+    </div>
+    <hr style="border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.3); margin:0px;">
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Latin')" id="defaultOpen">
+            Latin
+        </button>
+        <button class="tablinks" onclick="openCity(event, 'Character Map')">
+            Character Map
+        </button>
+        <button class="tablinks" onclick="openCity(event, 'OpenType Features')">
+            OpenType Features
+        </button>   
+    </div>
+<!-- LATIN----------------------------------------------------------------------------------------------------------------------------------------------------------->    
+    <div id="Latin" class="tabcontent">
+            <div id="content-1" contenteditable="true" spellcheck="false">
+                <h1>
+                    The car was
+                    <br> 
+                    a boxy late
+                    <br> 
+                    model Ford
+                </h1>
+                <hr style="border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.3);">
+                <h2>
+                    The car was a boxy late model Ford sedan, white over black, innocuous bordering on invisible, and very fast. It had been a sheriff’s vehicle originally bought at an auction in Tennessee, and further modified for speed. Perry and I listened to the big engine idle, checked the dual scoops on the hood. I had not seen one of those on the road since high
+                </h2>
+                <hr style="border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.3);">
+                <h3>
+                    The car was a boxy late model Ford sedan, white over black, innocuous bordering on invisible, and very fast. It had been a sheriff’s vehicle originally bought at an auction in Tennessee, and further modified for speed. Perry and I listened to the big engine idle, checked the dual scoops on the hood. I had not seen one of those on the road since high school. “You like the car?” Perry asked. “It’s all right,” I said, my eyes ahead. “I’ve never been much of a Ford man.” Perry shifted in his bucket, “You know something about cars? For city cruising, it’ll do.” I spent my childhood in Riverdale, New Jersey, thirty miles north from long, narrow Manhattan Island, which sits in the bay, among other islands, outcroppings , flatlands, like a silhouette of a right whale navigating a rocky passage; on the area map, among blank-faced formations, all like itself colored yellow for density of population, it lies like a smelt in a pan. In the old days, Riverdale was a lumbering town. No one who lived in it was out of sound of the big saws in the mill by the lake. Then one year there were no more logs to make lumber. But you may never have heard of Riverdale. Nothing happened really there. It was a small and ugly town. The city had come back to me in a dream. Rising up through the tranquil sleep of a warm May 
+                </h3>
+                <hr style="border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.3);">
+                <p>
+                    The car was a boxy late model Ford sedan, white over black, innocuous bordering on invisible, and very fast. It had been a sheriff’s vehicle originally bought at an auction in Tennessee, and further modified for speed. Perry and I listened to the big engine idle, checked the dual scoops on the hood. I had not seen one of those on the road since high school. “You like the car?” Perry asked. “It’s all right,” I said, my eyes ahead. “I’ve never been much of a Ford man.” Perry shifted in his bucket, “You know something about cars? For city cruising, it’ll do.” I spent my childhood in Riverdale, New Jersey, thirty miles north from long, narrow Manhattan Island, which sits in the bay, among other islands, outcroppings, flatlands, like a silhouette of a right whale navigating a rocky passage; on the area map, among blank-faced formations, all like itself colored yellow for density of population, it lies like a smelt in a pan. In the old days, Riverdale was a lumbering town. No one who lived in it was out of sound of the big saws in the mill by the lake. Then one year there were no more logs to make lumber. But you may never have heard of Riverdale. Nothing happened really there. It was a small and ugly town. The city had come back to me in a dream. Rising up through the tranquil sleep of a warm May evening in the noisy and busy New York, the reverie left in its wake a delicious sense of peace. All cities begin as a point of activity, usually a harbor, and settlement concentrically grows around this point in increasingly wider rings. Manhattan is unique in its shape and circumstances and in its growth, which resembled a thermometer. Riverdale had no center, just Main Street. Bad weather would come in one day when the fall was over and would stay for the six following months. I prayed for my dead dog, but I didn’t pray when Emily died. God would make an exception. He would let her into Heaven. In the early summer of my fourteenth year a lorry pulled up outside our house. I was sitting on the front step rereading a comic. The driver came toward me, covered in a fine, pale dust, which gave his face a ghostly look. “Cement,” he said. It’s not that I was being shy. It was just that—well, for one, I don’t even remember the event. It’s a blank: a white slate, a black hole. I was able to date the occasion with complete certainty because that afternoon I had been sledding with my lifelong friend and enemy, Perry Boy, and we had quarreled, because his new Christmas sled would not go as fast as my old one. Snow was never heavy in our part of the world, but this Christmas it had been plentiful enough almost to cover the tallest spears of dried grass in Mountain Side Park. The following day, my dog was dying. I brought her water and food and placed them near her, stood watching intently—but she didn’t move. 
+                </p>
+                <hr style="border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.3); margin-after:0px;">
+
+            </div>
+        </div>
+<!-- CHARACTER MAP--------------------------------------------------------------------------------------------------------------------------------------------------->        
+    <div id="Character Map" class="tabcontent">
+    <!--Basic Latin [0000—007F]-------------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Basic Latin">Basic Latin</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="NULL" data-content="U+0000"><div class="cell">&nbsp;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="CARRIAGE RETURN (CR)" data-content="U+000D"><div class="cell">&nbsp;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Space" data-content="U+0020"><div class="cell">&nbsp;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Exclamation Mark" data-content="U+0021"><div class="cell">&#33;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Quotation Mark" data-content="U+0022"><div class="cell">&#34;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Number Sign" data-content="U+0023"><div class="cell">&#35;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Dollar Sign" data-content="U+0024"><div class="cell">&#36;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Percent Sign" data-content="U+0025"><div class="cell">&#37;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Ampersand" data-content="U+0026"><div class="cell">&#38;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Apostrophe" data-content="U+0027"><div class="cell">&#39;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Left Parenthesis" data-content="U+0028"><div class="cell">&#40;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Right Parenthesis" data-content="U+0029"><div class="cell">&#41;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Asterisk" data-content="U+002A"><div class="cell">&#42;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Plus Sign" data-content="U+002B"><div class="cell">&#43;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Comma" data-content="U+002C"><div class="cell">&#44;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Hyphen-minus" data-content="U+002D"><div class="cell">&#45;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Full Stop" data-content="U+002E"><div class="cell">&#46;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Solidus" data-content="U+002F"><div class="cell">&#47;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Zero" data-content="U+0030"><div class="cell">&#48;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit One" data-content="U+0031"><div class="cell">&#49;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Two" data-content="U+0032"><div class="cell">&#50;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Three" data-content="U+0033"><div class="cell">&#51;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Four" data-content="U+0034"><div class="cell">&#52;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Five" data-content="U+0035"><div class="cell">&#53;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Six" data-content="U+0036"><div class="cell">&#54;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Seven" data-content="U+0037"><div class="cell">&#55;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Eight" data-content="U+0038"><div class="cell">&#56;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Digit Nine" data-content="U+0039"><div class="cell">&#57;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Colon" data-content="U+003A"><div class="cell">&#58;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Semicolon" data-content="U+003B"><div class="cell">&#59;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Less-Than Sign" data-content="U+003C"><div class="cell">&#60;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Equals Sign" data-content="U+003D"><div class="cell">&#61;</div></a>    
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Greater-Than Sign" data-content="U+003E"><div class="cell">&#62;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Question Mark" data-content="U+003F"><div class="cell">&#63;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Commercial At" data-content="U+0040"><div class="cell">&#64;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital A" data-content="U+0041"><div class="cell">&#65;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital B" data-content="U+0042"><div class="cell">&#66;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital C" data-content="U+0043"><div class="cell">&#67;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital D" data-content="U+0044"><div class="cell">&#68;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital E" data-content="U+0045"><div class="cell">&#69;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital F" data-content="U+0046"><div class="cell">&#70;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital G" data-content="U+0047"><div class="cell">&#71;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital H" data-content="U+0048"><div class="cell">&#72;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital I" data-content="U+0049"><div class="cell">&#73;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital J" data-content="U+004A"><div class="cell">&#74;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital K" data-content="U+004B"><div class="cell">&#75;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital L" data-content="U+004C"><div class="cell">&#76;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital M" data-content="U+004D"><div class="cell">&#77;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital N" data-content="U+004E"><div class="cell">&#78;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital O" data-content="U+004F"><div class="cell">&#79;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital P" data-content="U+0050"><div class="cell">&#80;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Q" data-content="U+0051"><div class="cell">&#81;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital R" data-content="U+0052"><div class="cell">&#82;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital S" data-content="U+0053"><div class="cell">&#83;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital T" data-content="U+0054"><div class="cell">&#84;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital U" data-content="U+0055"><div class="cell">&#85;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital V" data-content="U+0056"><div class="cell">&#86;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital W" data-content="U+0057"><div class="cell">&#87;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital X" data-content="U+0058"><div class="cell">&#88;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Y" data-content="U+0059"><div class="cell">&#89;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Z" data-content="U+005A"><div class="cell">&#90;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Left Square Bracket" data-content="U+005B"><div class="cell">&#91;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Reverse Solidus" data-content="U+005C"><div class="cell">&#92;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Right Square Bracket" data-content="U+005D"><div class="cell">&#93;</div></a>        
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Circumflex Accent" data-content="U+005E"><div class="cell">&#94;</div></a>        
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Low Line" data-content="U+005F"><div class="cell">&#95;</div></a>        
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Grave Accent" data-content="U+0060"><div class="cell">&#96;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter a" data-content="U+0061"><div class="cell">&#97;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter b" data-content="U+0062"><div class="cell">&#98;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter c" data-content="U+0063"><div class="cell">&#99;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter d" data-content="U+0064"><div class="cell">&#100;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter e" data-content="U+0065"><div class="cell">&#101;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter f" data-content="U+0066"><div class="cell">&#102;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter g" data-content="U+0067"><div class="cell">&#103;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter h" data-content="U+0068"><div class="cell">&#104;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter i" data-content="U+0069"><div class="cell">&#105;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter j" data-content="U+006A"><div class="cell">&#106;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter k" data-content="U+006B"><div class="cell">&#107;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter l" data-content="U+006C"><div class="cell">&#108;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter m" data-content="U+006D"><div class="cell">&#109;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter n" data-content="U+006E"><div class="cell">&#110;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter o" data-content="U+006F"><div class="cell">&#111;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter p" data-content="U+0070"><div class="cell">&#112;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter q" data-content="U+0071"><div class="cell">&#113;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter r" data-content="U+0072"><div class="cell">&#114;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter s" data-content="U+0073"><div class="cell">&#115;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter t" data-content="U+0074"><div class="cell">&#116;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter u" data-content="U+0075"><div class="cell">&#117;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter v" data-content="U+0076"><div class="cell">&#118;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter w" data-content="U+0077"><div class="cell">&#119;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter x" data-content="U+0078"><div class="cell">&#120;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter y" data-content="U+0079"><div class="cell">&#121;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter z" data-content="U+007A"><div class="cell">&#122;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Left Curly Bracket" data-content="U+007B"><div class="cell">&#123;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Vertical Line" data-content="U+007C"><div class="cell">&#124;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Right Curly Bracket" data-content="U+007D"><div class="cell">&#125;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Tilde" data-content="U+007E"><div class="cell">&#126;</div></a>
+            </div>
+        </div>
+    <!--Latin-1 Supplement [0080—00FF]------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Latin-1 Supplement">Latin-1 Supplement</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="No-Break Space" data-content="U+00A0"><div class="cell">&#160;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Inverted Exclamation Mark" data-content="U+00A1"><div class="cell">&#161;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Cent Sign" data-content="U+00A2"><div class="cell">&#162;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Pound Sign" data-content="U+00A3"><div class="cell">&#163;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Currency Sign" data-content="U+00A4"><div class="cell">&#164;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Yen Sign" data-content="U+00A5"><div class="cell">&#165;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Broken Bar" data-content="U+00A6"><div class="cell">&#166;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Section Sign" data-content="U+00A7"><div class="cell">&#167;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Diaeresis" data-content="U+00A8"><div class="cell">&#168;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Copyright Sign" data-content="U+00A9"><div class="cell">&#169;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Feminine Ordinal Indicator" data-content="U+00AA"><div class="cell">&#170;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Left-Pointing Double Angle Quotation Mark" data-content="U+00AB"><div class="cell">&#171;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Not Sign" data-content="U+00AC"><div class="cell">&#172;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Soft Hyphen" data-content="U+00AD"><div class="cell">-</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Registered Sign" data-content="U+00AE"><div class="cell">&#174;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Macron" data-content="U+00AF"><div class="cell">&#175;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Degree Sign" data-content="U+00B0"><div class="cell">&#176;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Plus-Minus Sign" data-content="U+00B1"><div class="cell">&#177;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Two" data-content="U+00B2"><div class="cell">&#178;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Three" data-content="U+00B3"><div class="cell">&#179;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Acute Accent" data-content="U+00B4"><div class="cell">&#180;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Micro Sign" data-content="U+00B5"><div class="cell">&#181;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Pilcrow Sign" data-content="U+00B6"><div class="cell">&#182;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Middle Dot" data-content="U+00B7"><div class="cell">&#183;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Cedilla" data-content="U+00B8"><div class="cell">&#184;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript One" data-content="U+00B9"><div class="cell">&#185;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Masculine Ordinal Indicator" data-content="U+00BA"><div class="cell">&#186;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Right-Pointing Double Angle Quotation Mark" data-content="U+00BB"><div class="cell">&#187;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Vulgar Fraction One Quarter" data-content="U+00BC"><div class="cell">&#188;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Vulgar Fraction One Half" data-content="U+00BD"><div class="cell">&#189;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Vulgar Fraction Three Quarters" data-content="U+00BE"><div class="cell">&#190;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Inverted Question Mark" data-content="U+00BF"><div class="cell">&#191;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter a with Grave" data-content="U+00C0"><div class="cell">&#192;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter a with Acute" data-content="U+00C1"><div class="cell">&#193;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter a with Circumflex" data-content="U+00C2"><div class="cell">&#194;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter a with Tilde" data-content="U+00C3"><div class="cell">&#195;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter a with Diaeresis" data-content="U+00C4"><div class="cell">&#196;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter a with Ring Above" data-content="U+00C5"><div class="cell">&#197;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter Æ" data-content="U+00C6"><div class="cell">&#198;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter C with Cedilla" data-content="U+00C7"><div class="cell">&#199;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter E with Grave" data-content="U+00C8"><div class="cell">&#200;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter E with Acute" data-content="U+00C9"><div class="cell">&#201;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter E with Circumflex" data-content="U+00CA"><div class="cell">&#202;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter E with Diaeresis" data-content="U+00CB"><div class="cell">&#203;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter I with Grave" data-content="U+00CC"><div class="cell">&#204;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter I with Acute" data-content="U+00CD"><div class="cell">&#205;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter I with Circumflex" data-content="U+00CE"><div class="cell">&#206;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter I with Diaeresis" data-content="U+00CF"><div class="cell">&#207;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter Eth" data-content="U+00D0"><div class="cell">&#208;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter N with Tilde" data-content="U+00D1"><div class="cell">&#209;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter O with Grave" data-content="U+00D2"><div class="cell">&#210;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter O with Acute" data-content="U+00D3"><div class="cell">&#211;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter O with Circumflex" data-content="U+00D4"><div class="cell">&#212;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter O with Tilde" data-content="U+00D5"><div class="cell">&#213;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter O with Diaeresis" data-content="U+00D6"><div class="cell">&#214;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Multiplication Sign" data-content="U+00D7"><div class="cell">&#215;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter O with Stroke" data-content="U+00D8"><div class="cell">&#216;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter U with Grave" data-content="U+00D9"><div class="cell">&#217;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter U with Acute" data-content="U+00DA"><div class="cell">&#218;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter U with Circumflex" data-content="U+00DB"><div class="cell">&#219;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter U with Diaeresis" data-content="U+00DC"><div class="cell">&#220;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter Y with Acute" data-content="U+00DD"><div class="cell">&#221;</div></a>        
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter Thorn" data-content="U+00DE"><div class="cell">&#222;</div></a>        
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter Sharp S" data-content="U+00DF"><div class="cell">&#223;</div></a>        
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter a with Grave" data-content="U+00E0"><div class="cell">&#224;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter a with Acute" data-content="U+00E1"><div class="cell">&#225;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter a with Circumflex" data-content="U+00E2"><div class="cell">&#226;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter a with Tilde" data-content="U+00E3"><div class="cell">&#227;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter a with Diaeresis" data-content="U+00E4"><div class="cell">&#228;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter a with Ring Above" data-content="U+00E5"><div class="cell">&#229;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter æ" data-content="U+00E6"><div class="cell">&#230;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter C with Cedilla" data-content="U+00E7"><div class="cell">&#231;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter E with Grave" data-content="U+00E8"><div class="cell">&#232;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter E with Acute" data-content="U+00E9"><div class="cell">&#233;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter E with Circumflex" data-content="U+00EA"><div class="cell">&#234;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter E with Diaeresis" data-content="U+00EB"><div class="cell">&#235;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter I with Grave" data-content="U+00EC"><div class="cell">&#236;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter I with Acute" data-content="U+00ED"><div class="cell">&#237;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter I with Circumflex" data-content="U+00EE"><div class="cell">&#238;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter I with Diaeresis" data-content="U+00EF"><div class="cell">&#239;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter Eth" data-content="U+00F0"><div class="cell">&#240;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter N with Tilde" data-content="U+00F1"><div class="cell">&#241;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter O with Grave" data-content="U+00F2"><div class="cell">&#242;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter O with Acute" data-content="U+00F3"><div class="cell">&#243;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter O with Circumflex" data-content="U+00F4"><div class="cell">&#244;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter O with Tilde" data-content="U+00F5"><div class="cell">&#245;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter O with Diaeresis" data-content="U+00F6"><div class="cell">&#246;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Division Sign" data-content="U+00F7"><div class="cell">&#247;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter O with Stroke" data-content="U+00F8"><div class="cell">&#248;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter U with Grave" data-content="U+00F9"><div class="cell">&#249;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter U with Acute" data-content="U+00FA"><div class="cell">&#250;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter U with Circumflex" data-content="U+00FB"><div class="cell">&#251;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter U with Diaeresis" data-content="U+00FC"><div class="cell">&#252;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter Y with Acute" data-content="U+00FD"><div class="cell">&#253;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter Thorn" data-content="U+00FE"><div class="cell">&#254;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter Y with diaeresis" data-content="U+00FF"><div class="cell">&#255;</div></a>
+            </div>
+        </div>
+    <!--Latin Extended-A [0100—017F]--------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Latin Extended-A">Latin Extended-A</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital A with Macron" data-content="U+0100"><div class="cell">&#256;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter a with Macron" data-content="U+0101"><div class="cell">&#257;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital A with Breve" data-content="U+0102"><div class="cell">&#258;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter a with Breve" data-content="U+0103"><div class="cell">&#259;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital A with Ogonek" data-content="U+0104"><div class="cell">&#260;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter a with Ogonek" data-content="U+0105"><div class="cell">&#261;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital C with Acute" data-content="U+0106"><div class="cell">&#262;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter c with Acute" data-content="U+0107"><div class="cell">&#263;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital C with Circumflex" data-content="U+0108"><div class="cell">&#264;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter c with circumflex" data-content="U+0109"><div class="cell">&#265;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital C with Dot Above" data-content="U+010A"><div class="cell">&#266;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter c with Dot Above" data-content="U+010B"><div class="cell">&#267;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital C with Caron" data-content="U+010C"><div class="cell">&#268;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter c with Caron" data-content="U+010D"><div class="cell">&#269;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital D with Caron" data-content="U+010E"><div class="cell">&#270;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter d with Caron" data-content="U+010F"><div class="cell">&#271;</div></a>    
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital D with Stroke" data-content="U+0110"><div class="cell">&#272;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter d with Stroke" data-content="U+0111"><div class="cell">&#273;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital E with Macron" data-content="U+0112"><div class="cell">&#274;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter e with Macron" data-content="U+0113"><div class="cell">&#275;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital E with Breve" data-content="U+0114"><div class="cell">&#276;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter e with Breve" data-content="U+0115"><div class="cell">&#277;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital E with Dot Above" data-content="U+0116"><div class="cell">&#278;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter e with Dot Above" data-content="U+0117"><div class="cell">&#279;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital E with Ogonek" data-content="U+0118"><div class="cell">&#280;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter e with Ogonek" data-content="U+0119"><div class="cell">&#281;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital E with Caron" data-content="U+011A"><div class="cell">&#282;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter e with Caron" data-content="U+011B"><div class="cell">&#283;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital G with Circumflex" data-content="U+011C"><div class="cell">&#284;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter g with Circumflex" data-content="U+011D"><div class="cell">&#285;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital G with Breve" data-content="U+011E"><div class="cell">&#286;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter g with Breve" data-content="U+011F"><div class="cell">&#287;</div></a>    
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital G with Dot Above" data-content="U+0120"><div class="cell">&#288;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter g with Dot Above" data-content="U+0121"><div class="cell">&#289;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital G with Cedilla" data-content="U+0122"><div class="cell">&#290;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter g with Cedilla" data-content="U+0123"><div class="cell">&#291;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital H with Circumflex" data-content="U+0124"><div class="cell">&#292;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter h with Circumflex" data-content="U+0125"><div class="cell">&#293;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital H with Stroke" data-content="U+0126"><div class="cell">&#294;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter h with Stroke" data-content="U+0127"><div class="cell">&#295;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital I with Tilde" data-content="U+0128"><div class="cell">&#296;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter i with Tilde" data-content="U+0129"><div class="cell">&#297;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital I with Macron" data-content="U+012A"><div class="cell">&#298;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter i with Macron" data-content="U+012B"><div class="cell">&#299;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital I with Breve" data-content="U+012C"><div class="cell">&#300;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter i with Breve" data-content="U+012D"><div class="cell">&#301;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital I with Ogonek" data-content="U+012E"><div class="cell">&#302;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter i with Ogonek" data-content="U+012F"><div class="cell">&#303;</div></a>    
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital I with Dot Above" data-content="U+0130"><div class="cell">&#304;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter dotless i" data-content="U+0131"><div class="cell">&#305;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Ĳ" data-content="U+0132"><div class="cell">&#306;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter ĳ" data-content="U+0133"><div class="cell">&#307;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital J with Circumflex" data-content="U+0134"><div class="cell">&#308;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter j with Circumflex" data-content="U+0135"><div class="cell">&#309;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital K with Cedilla" data-content="U+0136"><div class="cell">&#310;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter k with Cedilla" data-content="U+0137"><div class="cell">&#311;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter kra" data-content="U+0138"><div class="cell">&#312;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital L with Acute" data-content="U+0139"><div class="cell">&#313;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter l with Acute" data-content="U+013A"><div class="cell">&#314;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital L with Cedilla" data-content="U+013B"><div class="cell">&#315;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter l with Cedilla" data-content="U+013C"><div class="cell">&#316;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital L with Caron" data-content="U+013D"><div class="cell">&#317;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter l with Caron" data-content="U+013E"><div class="cell">&#318;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital L with Middle Dot" data-content="U+013F"><div class="cell">&#319;</div></a>    
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter l with Middle Dot" data-content="U+0140"><div class="cell">&#320;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital L with Stroke" data-content="U+0141"><div class="cell">&#321;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter l with Stroke" data-content="U+0142"><div class="cell">&#322;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital N with Acute" data-content="U+0143"><div class="cell">&#323;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter n with Acute" data-content="U+0144"><div class="cell">&#324;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital N with Cedilla" data-content="U+0145"><div class="cell">&#325;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter n with Cedilla" data-content="U+0146"><div class="cell">&#326;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital N with Caron" data-content="U+0147"><div class="cell">&#327;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter n with Caron" data-content="U+0148"><div class="cell">&#328;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter n preceded by Apostrophe" data-content="U+0149"><div class="cell">&#329;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Eng" data-content="U+014A"><div class="cell">&#330;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter eng" data-content="U+014B"><div class="cell">&#331;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital O with Macron" data-content="U+014C"><div class="cell">&#332;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter o with Macron" data-content="U+014D"><div class="cell">&#333;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital O with Breve" data-content="U+014E"><div class="cell">&#334;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter o with Breve" data-content="U+014F"><div class="cell">&#335;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital O with Double Acute" data-content="U+0150"><div class="cell">&#336;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter o with Double Acute" data-content="U+0151"><div class="cell">&#337;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Œ" data-content="U+0152"><div class="cell">&#338;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter œ" data-content="U+0153"><div class="cell">&#339;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital R with Acute" data-content="U+0154"><div class="cell">&#340;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter r with Acute" data-content="U+0155"><div class="cell">&#341;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital R with Cedilla" data-content="U+0156"><div class="cell">&#342;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter r with Cedilla" data-content="U+0157"><div class="cell">&#343;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital R with Caron" data-content="U+0158"><div class="cell">&#344;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter r with Caron" data-content="U+0159"><div class="cell">&#345;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital S with Acute" data-content="U+015A"><div class="cell">&#346;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter s with Acute" data-content="U+015B"><div class="cell">&#347;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital S with Circumflex" data-content="U+015C"><div class="cell">&#348;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter s with Circumflex" data-content="U+015D"><div class="cell">&#349;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital S with Cedilla" data-content="U+015E"><div class="cell">&#350;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter s with Cedilla" data-content="U+015F"><div class="cell">&#351;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital S with Caron" data-content="U+0160"><div class="cell">&#352;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter s with Caron" data-content="U+0161"><div class="cell">&#353;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital T with Cedilla" data-content="U+0162"><div class="cell">&#354;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter t with Cedilla" data-content="U+0163"><div class="cell">&#355;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital T with Caron" data-content="U+0164"><div class="cell">&#356;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter t with Caron" data-content="U+0165"><div class="cell">&#357;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital T with Stroke" data-content="U+0166"><div class="cell">&#358;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter t with Stroke" data-content="U+0167"><div class="cell">&#359;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital U with Tilde" data-content="U+0168"><div class="cell">&#360;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter u with Tilde" data-content="U+0169"><div class="cell">&#361;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital U with Macron" data-content="U+016A"><div class="cell">&#362;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter u with Macron" data-content="U+016B"><div class="cell">&#363;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital U with Breve" data-content="U+016C"><div class="cell">&#364;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter u with breve" data-content="U+016D"><div class="cell">&#365;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital U with Ring Above" data-content="U+016E"><div class="cell">&#366;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter u with Ring Above" data-content="U+016F"><div class="cell">&#367;</div></a>
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital U with Double Acute" data-content="U+0170"><div class="cell">&#368;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter u with Double Acute" data-content="U+0171"><div class="cell">&#369;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital U with Ogonek" data-content="U+0172"><div class="cell">&#370;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter u with Ogonek" data-content="U+0173"><div class="cell">&#371;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital W with Circumflex" data-content="U+0174"><div class="cell">&#372;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter w with Circumflex" data-content="U+0175"><div class="cell">&#373;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Y with Circumflex" data-content="U+0176"><div class="cell">&#374;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter y with Circumflex" data-content="U+0177"><div class="cell">&#375;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Y with dieresis" data-content="U+0178"><div class="cell">&#376;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Z with Acute" data-content="U+0179"><div class="cell">&#377;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter z with Acute" data-content="U+017A"><div class="cell">&#378;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Z with Dot Above" data-content="U+017B"><div class="cell">&#379;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter z with Dot Above" data-content="U+017C"><div class="cell">&#380;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Capital Z with Caron" data-content="U+017D"><div class="cell">&#381;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Letter z with Caron" data-content="U+017E"><div class="cell">&#382;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter Long s" data-content="U+017F"><div class="cell">&#383;</div></a>    
+            </div>
+        </div>    
+    <!--Latin Extended-B [0180—024F]--------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Latin Extended-B">Latin Extended-B</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter f with hook" data-content="U+0192"><div class="cell">&#402;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter a with Ring Above and Acute" data-content="U+01FA"><div class="cell">&#506;</div></a>        
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter a with Ring Above and Acute" data-content="U+01FB"><div class="cell">&#507;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter Æ with Acute" data-content="U+01FC"><div class="cell">&#508;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter æ with Acute" data-content="U+01FD"><div class="cell">&#509;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter O with Stroke and Acute" data-content="U+01FE"><div class="cell">&#510;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter O with Stroke and Acute" data-content="U+01FF"><div class="cell">&#511;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter S with Comma Below" data-content="U+0218"><div class="cell">&#536;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter S with Comma Below" data-content="U+0219"><div class="cell">&#537;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter T with Comma Below" data-content="U+021A"><div class="cell">&#538;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter T with Comma Below" data-content="U+021B"><div class="cell">&#539;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter Dotless J" data-content="U+0237"><div class="cell">&#567;</div></a>    
+            </div>
+        </div>    
+    <!--Spacing Modifier Letters [02B0—02FF]------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+        <label for="Spacing Modifier Letters">Spacing Modifier Letters</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Modifier Letter Circumflex Accent" data-content="U+02C6"><div class="cell">&#710;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Caron" data-content="U+02C7"><div class="cell">&#711;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Breve" data-content="U+02D8"><div class="cell">&#728;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Dot Above" data-content="U+02D9"><div class="cell">&#729;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Ring Above" data-content="U+02DA"><div class="cell">&#730;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Ogonek" data-content="U+02DB"><div class="cell">&#731;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Small Tilde" data-content="U+02DC"><div class="cell">&#732;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Double Acute Accent" data-content="U+02DD"><div class="cell">&#733;</div></a>
+            </div>
+        </div>    
+    <!--Combining Diacritical Marks [0300—036F]---------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Combining Diacritical Marks">Combining Diacritical Marks</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Combining Turned Comma Above" data-content="U+0312"><div class="cell">&#786;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Combining Comma Below" data-content="U+0326"><div class="cell">&#806;</div></a>
+            </div>
+        </div>    
+    <!--Greek and Coptic [0370—03FF]--------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Greek and Coptic">Greek and Coptic</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Greek Capital Letter Pi" data-content="U+03A0"><div class="cell">&#928;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Greek Capital Letter Sigma" data-content="U+03A3"><div class="cell">&#931;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Greek Capital Letter Omega" data-content="U+03A9"><div class="cell">&#937;</div></a>
+            <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Greek Small Letter pi" data-content="U+03C0"><div class="cell">&#960;</div></a>    
+            </div>
+        </div>
+
+    <!--Latin Extended Additional [1E00—1EFF]------------------------------------------------------------------------------------------------------------------------>
+        <div class="tab">
+            <label for="Latin Extended Additional">Latin Extended Additional</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter W with Grave" data-content="U+1E80"><div class="cell">&#7808;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter W with Grave" data-content="U+1E81"><div class="cell">&#7809;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter W with Acute" data-content="U+1E82"><div class="cell">&#7810;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter W with Acute" data-content="U+1E83"><div class="cell">&#7811;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter W with Diaeresis" data-content="U+1E84"><div class="cell">&#7812;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter W with Diaeresis" data-content="U+1E85"><div class="cell">&#7813;</div></a>  
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter Sharp S" data-content="U+1E9E"><div class="cell">&#7838;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Capital Letter Y with Grave" data-content="U+1EF2"><div class="cell">&#7922;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Letter Y with Grave" data-content="U+1EF3"><div class="cell">&#7923;</div></a>    
+            </div>
+        </div>    
+    <!--General Punctuation [2000—206F]------------------------------------------------------------------------------------------------------------------------------>
+        <div class="tab">
+            <label for="General Punctuation">General Punctuation</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="En Quad" data-content="U+2000"><div class="cell">&#8192;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Em Quad" data-content="U+2001"><div class="cell">&#8193;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="En Space" data-content="U+2002"><div class="cell">&#8194;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Em Space" data-content="U+2003"><div class="cell">&#8195;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Three-Per-Em Space" data-content="U+2004"><div class="cell">&#8196;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Four-Per-Em Space" data-content="U+2005"><div class="cell">&#8197;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Six-Per-Em Space" data-content="U+2006"><div class="cell">&#8198;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Figure Space" data-content="U+2007"><div class="cell">&#8199;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Punctuation Space" data-content="U+2008"><div class="cell">&#8200;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Thin Space" data-content="U+2009"><div class="cell">&#8201;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Hair Space" data-content="U+200A"><div class="cell">&#8202;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Zero Width Space" data-content="U+200B"><div class="cell">&#8203;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="En Dash" data-content="U+2013"><div class="cell">&#8211;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Em Dash" data-content="U+2014"><div class="cell">&#8212;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Left Single Quotation Mark" data-content="U+2018"><div class="cell">&#8216;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Right Single Quotation Mark" data-content="U+2019"><div class="cell">&#8217;</div></a>    
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Single Low-9 Quotation Mark" data-content="U+201A"><div class="cell">&#8218;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Left Double Quotation Mark" data-content="U+201C"><div class="cell">&#8220;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Right Double Quotation Mark" data-content="U+201D"><div class="cell">&#8221;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Double Low-9 Quotation Mark" data-content="U+201E"><div class="cell">&#8222;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Dagger" data-content="U+2020"><div class="cell">&#8224;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Double Dagger" data-content="U+2021"><div class="cell">&#8225;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Bullet" data-content="U+2022"><div class="cell">&#8226;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Horizontal Ellipsis" data-content="U+2026"><div class="cell">&#8230;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Per Mille Sign" data-content="U+2030"><div class="cell">&#8240;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Single Left-Pointing Angle Quotation Mark" data-content="U+2039"><div class="cell">&#8249;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Single Right-Pointing Angle Quotation Mark" data-content="U+203A"><div class="cell">&#8250;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Fraction Slash" data-content="U+2044"><div class="cell">&#8260;</div></a>    
+            </div>
+        </div>    
+    <!--Superscripts and Subscripts [2070—209F]---------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Superscripts and Subscripts">Superscripts and Subscripts</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Zero" data-content="U+2070"><div class="cell">&#8304;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Four" data-content="U+2074"><div class="cell">&#8308;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Five" data-content="U+2075"><div class="cell">&#8309;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Six" data-content="U+2076"><div class="cell">&#8310;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Seven" data-content="U+2077"><div class="cell">&#8311;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Eight" data-content="U+2078"><div class="cell">&#8312;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Nine" data-content="U+2079"><div class="cell">&#8313;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Plus Sign" data-content="U+207A"><div class="cell">&#8314;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Minus" data-content="U+207B"><div class="cell">&#8315;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Equals" data-content="U+207C"><div class="cell">&#8316;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Left Parenthesis" data-content="U+207D"><div class="cell">&#8317;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Right Parenthesis" data-content="U+207E"><div class="cell">&#8318;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Superscript Latin Small Letter N" data-content="U+207F"><div class="cell">&#8319;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Zero" data-content="U+2080"><div class="cell">&#8320;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript One" data-content="U+2081"><div class="cell">&#8321;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Two" data-content="U+2082"><div class="cell">&#8322;</div></a>    
+                <br>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Three" data-content="U+2083"><div class="cell">&#8323;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Four" data-content="U+2084"><div class="cell">&#8324;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Five" data-content="U+2085"><div class="cell">&#8325;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Six" data-content="U+2086"><div class="cell">&#8326;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Seven" data-content="U+2087"><div class="cell">&#8327;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Eight" data-content="U+2088"><div class="cell">&#8328;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Nine" data-content="U+2089"><div class="cell">&#8329;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Plus Sign" data-content="U+208A"><div class="cell">&#8330;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Minus" data-content="U+208B"><div class="cell">&#8331;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Equals Sign" data-content="U+208C"><div class="cell">&#8332;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Left Parenthesis" data-content="U+208D"><div class="cell">&#8333;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Subscript Right Parenthesis" data-content="U+208E"><div class="cell">&#8334;</div></a>    
+            </div>
+        </div>  
+    <!--Currency Symbols [20A0—20CF]--------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Currency Symbols">Currency Symbols</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Euro Sign" data-content="U+20AC"><div class="cell">&#8364;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Hryvnia Sign" data-content="U+20B4"><div class="cell">&#8372;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Russian Ruble Sign" data-content="U+20BD"><div class="cell">&#8381;</div></a>    
+            </div>
+        </div>          
+    <!--Letterlike Symbols [2100—214F]------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Letterlike Symbols">Letterlike Symbols</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Numero Sign" data-content="U+2116"><div class="cell">&#8470;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Trade Mark Sign" data-content="U+2122"><div class="cell">&#8482;</div></a>
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Ohm Sign" data-content="U+2126"><div class="cell">&#8486;</div></a>    
+            </div>
+        </div>          
+    <!--Arrows [2190—21FF]------------------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Arrows">Arrows</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Leftwards Arrow" data-content="U+2190"><div class="cell">&#8592;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Upwards Arrow" data-content="U+2191"><div class="cell">&#8593;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Rightwards Arrow" data-content="U+2192"><div class="cell">&#8594;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Downwards Arrow" data-content="U+2193"><div class="cell">&#8595;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="North West Arrow" data-content="U+2196"><div class="cell">&#8598;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="North East Arrow" data-content="U+2197"><div class="cell">&#8599;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="South East Arrow" data-content="U+2198"><div class="cell">&#8600;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="South West Arrow" data-content="U+2199"><div class="cell">&#8601;</div></a>    
+            </div>
+        </div>       
+    <!--Mathematical Operators [2200—22FF]--------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Mathematical Operators">Mathematical Operators</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Partial Differential" data-content="U+2202"><div class="cell">&#8706;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Increment" data-content="U+2206"><div class="cell">&#8710;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="N-Ary Product" data-content="U+220F"><div class="cell">&#8719;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="N-Ary Summation" data-content="U+2211"><div class="cell">&#8721;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Minus Sign" data-content="U+2212"><div class="cell">&#8722;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Square Root" data-content="U+221A"><div class="cell">&#8730;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Infinity" data-content="U+221E"><div class="cell">&#8734;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Integral" data-content="U+222B"><div class="cell">&#8747;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Almost Equal To" data-content="U+2248"><div class="cell">&#8776;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Not Equal To" data-content="U+2260"><div class="cell">&#8800;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Less-Than or Equal To" data-content="U+2264"><div class="cell">&#8804;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Greater-Than or Equal To" data-content="U+2265"><div class="cell">&#8805;</div></a>    
+            </div>
+        </div>       
+    <!--Geometrical Shapes [25A0–25FF]------------------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Geometrical Shapes">Geometrical Shapes</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Lozenge" data-content="U+25CA"><div class="cell">&#9674;</div></a>    
+            </div>
+        </div>     
+    <!--Alphabetic Presentation Forms [FB00–FB4F]-------------------------------------------------------------------------------------------------------------------->
+        <div class="tab">
+            <label for="Alphabetic Presentation Forms">Alphabetic Presentation Forms</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;">
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Ligature ﬀ" data-content="U+FB00"><div class="cell">&#64256;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Ligature ﬁ" data-content="U+FB01"><div class="cell">&#64257;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Ligature ﬂ" data-content="U+FB02"><div class="cell">&#64258;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Ligature ﬃ" data-content="U+FB03"><div class="cell">&#64259;</div></a>    
+                <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Latin Small Ligature ﬄ" data-content="U+FB04"><div class="cell">&#64260;</div></a>    
+            </div>
+        </div>     
+    <!--Arabic Presentation Forms [FE70–FEFF]------------------------------------------------------------------------------------------------------------------------>
+        <div class="tab">
+            <label for="Arabic Presentation Forms">Arabic Presentation Forms-B</label>
+            <div style="margin-left:5px; margin-bottom: 10px; border: 0px; width: auto;"> 
+                    <a href="" data-toggle="popover" data-placement="top" data-trigger="focus" title="Zero Width No-Break Space" data-content="U+FEFF"><div class="cell">&#65279;</div></a>
+            </div>
+        </div>     
+    </div>
+<!-- OPENTYPE FEATURES----------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="OpenType Features" class="tabcontent">
+    
+    
+<!-- CASE --><!-- CASE --><!-- CASE --><!-- CASE --><!-- CASE --><!-- CASE --><!-- CASE --><!-- CASE -->
+<div>
+    <label class="switch">
+    <input id="checkbox2" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtcase>
+            Case Sensitive Forms [case]
+        </txtcase>
+    </label>
+    <div class="popup" onclick="caps()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="caps">
+            This feature shifts various punctuation marks up to a position that works better with all-capital sequences or sets of lining figure; it also changes oldstyle figures to lining figures.
+        </span>
+    </div>
+</div>
+<case contenteditable="true">
+    <highlightcase>«</highlightcase>THEINHARDT<highlightcase>»</highlightcase><br><highlightcase>(</highlightcase>478<highlightcase>)</highlightcase>
+    HI<highlightcase>@</highlightcase>XYZ.CH<br>
+    <highlightcase>@|¦()[]{}¡¿‹›«»-–—·←↑→↓↖↗↘↙</highlightcase>
+</case>
+
+<script type="text/javascript">
+$('#checkbox2').on('change', function(){
+$('case').css('font-feature-settings', this.checked ? '"case" off' :   '"case" on');
+$('case').css('-moz-font-feature-settings', this.checked ? '"case" off' :   '"case" on');
+$('case').css('-webkit-font-feature-settings', this.checked ? '"case" off' :   '"case" on');
+$('case').css('-o-font-feature-settings', this.checked ? '"case" off' :   '"case" on');
+$('txtcase').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function caps() {
+var popup = document.getElementById("caps");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /CASE --><!-- /CASE --><!-- /CASE --><!-- /CASE --><!-- /CASE --><!-- /CASE --><!-- /CASE --><!-- /CASE -->        
+<!-- CALT --><!-- CALT --><!-- CALT --><!-- CALT --><!-- CALT --><!-- CALT --><!-- CALT --><!-- CALT -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+    <input id="checkbox4" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtcalt>
+            Contextual Alternates [calt]
+        </txtcalt>
+    </label>
+    <div class="popup" onclick="calt()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="calt">
+            In specified situations, replaces default glyphs with alternate forms which provide better joining behavior.
+        </span>
+    </div>
+</div>
+<calt contenteditable="true">
+    <highlightcalt>A-A</highlightcalt>&thinsp;<highlightcalt>B–B</highlightcalt>&thinsp;<highlightcalt>C—C</highlightcalt>&thinsp;<highlightcalt>1-2</highlightcalt>&thinsp;<highlightcalt>3–4</highlightcalt>&thinsp;<highlightcalt>5—6</highlightcalt> 
+</calt>
+
+<script type="text/javascript">
+$('#checkbox4').on('change', function(){
+$('calt').css('font-feature-settings', this.checked ? '"calt" off' :   '"calt" on');
+$('calt').css('-moz-font-feature-settings', this.checked ? '"calt" off' :   '"calt" on');
+$('calt').css('-webkit-font-feature-settings', this.checked ? '"calt" off' :   '"calt" on');
+$('calt').css('-ms-font-feature-settings', this.checked ? '"calt" off' :   '"calt" on');
+$('calt').css('-o-font-feature-settings', this.checked ? '"calt" off' :   '"calt" on');
+$('txtcalt').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function calt() {
+var popup = document.getElementById("calt");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /CALT --><!-- /CALT --><!-- /CALT --><!-- /CALT --><!-- /CALT --><!-- /CALT --><!-- /CALT --><!-- /CALT -->
+<!-- TNUM --><!-- TNUM --><!-- TNUM --><!-- TNUM --><!-- TNUM --><!-- TNUM --><!-- TNUM --><!-- TNUM -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox8" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txttnum>
+            Tabular Lining Figures [tnum] [lnum]
+        </txttnum>
+    </label>
+    <div class="popup" onclick="tnum()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="tnum">
+            Replaces figure glyphs set on proportional widths with corresponding glyphs set on uniform (tabular) widths.
+        </span>
+    </div>
+</div>
+<tnum contenteditable="true">
+    0123456789
+</tnum>
+<script type="text/javascript">
+$('#checkbox8').on('change', function(){
+$('tnum').css('font-feature-settings', this.checked ? '"tnum" off' :   '"tnum" on');
+$('tnum').css('-moz-font-feature-settings', this.checked ? '"tnum" off' :   '"tnum" on');
+$('tnum').css('-webkit-font-feature-settings', this.checked ? '"tnum" off' :   '"tnum" on');
+$('tnum').css('-ms-font-feature-settings', this.checked ? '"tnum" off' :   '"tnum" on');
+$('tnum').css('-o-font-feature-settings', this.checked ? '"tnum" off' :   '"tnum" on');
+$('txttnum').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function tnum() {
+var popup = document.getElementById("tnum");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /TNUM --><!-- /TNUM --><!-- /TNUM --><!-- /TNUM --><!-- /TNUM --><!-- /TNUM --><!-- /TNUM --><!-- /TNUM -->
+<!-- ONUM --><!-- ONUM --><!-- ONUM --><!-- ONUM --><!-- ONUM --><!-- ONUM --><!-- ONUM --><!-- ONUM -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox9" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtonum>
+            Proportional Oldstyle Figures [pnum] [onum]
+        </txtonum>
+    </label>
+    <div class="popup" onclick="onum()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="onum">
+            This feature changes selected figures from the default lining style to oldstyle form.
+        </span>
+    </div>
+</div>    
+<onum contenteditable="true">
+    0123456789
+</onum>
+<script type="text/javascript">
+$('#checkbox9').on('change', function(){
+$('onum').css('font-feature-settings', this.checked ? '"onum" off' :   '"onum" on');
+$('onum').css('-moz-font-feature-settings', this.checked ? '"onum" off' :   '"onum" on');
+$('onum').css('-webkit-font-feature-settings', this.checked ? '"onum" off' :   '"onum" on');
+$('onum').css('-ms-font-feature-settings', this.checked ? '"onum" off' :   '"onum" on');
+$('onum').css('-o-font-feature-settings', this.checked ? '"onum" off' :   '"onum" on');
+$('txtonum').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function onum() {
+var popup = document.getElementById("onum");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /ONUM --><!-- /ONUM --><!-- /ONUM --><!-- /ONUM --><!-- /ONUM --><!-- /ONUM --><!-- /ONUM --><!-- /ONUM -->
+<!-- TONUM --><!-- TONUM --><!-- TONUM --><!-- TONUM --><!-- TONUM --><!-- TONUM --><!-- TONUM --><!-- TONUM -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox10" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txttonum>
+            Tabular Oldstyle Figures [tnum] [onum] [tonum]
+        </txttonum>
+    </label>
+    <div class="popup" onclick="tonum()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="tonum">
+            This feature changes selected figures from the default lining style to oldstyle tabular form.
+        </span>
+    </div>
+</div>
+<tonum contenteditable="true">
+    0123456789
+</tonum>
+<script type="text/javascript">
+$('#checkbox10').on('change', function(){
+$('tonum').css('font-feature-settings', this.checked ? '"onum" off "tnum" off' :   '"onum" on "tnum" on');
+$('tonum').css('-moz-font-feature-settings', this.checked ? '"onum" off "tnum" off' :   '"onum" on "tnum" on');
+$('tonum').css('-webkit-font-feature-settings', this.checked ? '"onum" off "tnum" off' :   '"onum" on "tnum" on');
+$('tonum').css('-ms-font-feature-settings', this.checked ? '"onum" off "tnum" off' :   '"onum" on "tnum" on');
+$('tonum').css('-o-font-feature-settings', this.checked ? '"onum" off "tnum" off' :   '"onum" on "tnum" on');
+$('tonum').css('font-variant-numeric', this.checked ? 'proportional-nums' :   'oldstyle-nums tabular-nums');        
+$('txttonum').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function tonum() {
+var popup = document.getElementById("tonum");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /TONUM --><!-- /TONUM --><!-- /TONUM --><!-- /TONUM --><!-- /TONUM --><!-- /TONUM --><!-- /TONUM --><!-- /TONUM -->
+<!-- LIGA --><!-- LIGA --><!-- LIGA --><!-- LIGA --><!-- LIGA --><!-- LIGA --><!-- LIGA --><!-- LIGA -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+    <input id="checkbox5" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtliga>
+            Standard Ligatures [liga]
+        </txtliga>
+    </label>
+    <div class="popup" onclick="liga()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="liga">
+            Replaces a sequence of glyphs with a single glyph which is preferred for typographic purposes. This feature covers the ligatures which the designer/manufacturer judges should be used in normal conditions.
+        </span>
+    </div>
+</div>
+<liga contenteditable="true">
+    <highlightliga>fi</highlightliga>&thinsp;<highlightliga>ff</highlightliga>&thinsp;<highlightliga>fl</highlightliga>&thinsp;<highlightliga>ffi</highlightliga>&thinsp;<highlightliga>ffl</highlightliga>
+</liga>
+<script type="text/javascript">
+$('#checkbox5').on('change', function(){
+$('liga').css('font-feature-settings', this.checked ? '"liga" off' :   '"liga" on');
+$('liga').css('-moz-font-feature-settings', this.checked ? '"liga" off' :   '"liga" on');
+$('liga').css('-webkit-font-feature-settings', this.checked ? '"liga" off' :   '"liga" on');
+$('liga').css('-ms-font-feature-settings', this.checked ? '"liga" off' :   '"liga" on');
+$('liga').css('-o-font-feature-settings', this.checked ? '"liga" off' :   '"liga" on');
+$('txtliga').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function liga() {
+var popup = document.getElementById("liga");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /LIGA --><!-- /LIGA --><!-- /LIGA --><!-- /LIGA --><!-- /LIGA --><!-- /LIGA --><!-- /LIGA --><!-- /LIGA -->          
+<!-- DLIG --><!-- DLIG --><!-- DLIG --><!-- DLIG --><!-- DLIG --><!-- DLIG --><!-- DLIG --><!-- DLIG --> 
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+    <input id="checkbox6" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtdlig>
+            Discretionary Ligatures [dlig]
+        </txtdlig>
+    </label>
+    <div class="popup" onclick="dlig()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="dlig">
+            Replaces a sequence of glyphs with a single glyph which is preferred for typographic purposes. This feature covers those ligatures which may be used for special effect, at the user’s preference.
+        </span>
+    </div>
+</div>
+<dlig contenteditable="true">
+    <highlightdlig>-><-</highlightdlig>
+</dlig>
+<script type="text/javascript">
+$('#checkbox6').on('change', function(){
+$('dlig').css('font-feature-settings', this.checked ? '"dlig" off' :   '"dlig" on');
+$('dlig').css('-moz-font-feature-settings', this.checked ? '"dlig" off' :   '"dlig" on');
+$('dlig').css('-webkit-font-feature-settings', this.checked ? '"dlig" off' :   '"dlig" on');
+$('dlig').css('-ms-font-feature-settings', this.checked ? '"dlig" off' :   '"dlig" on');
+$('dlig').css('-o-font-feature-settings', this.checked ? '"dlig" off' :   '"dlig" on');
+$('txtdlig').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function dlig() {
+var popup = document.getElementById("dlig");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /DLIG --><!-- /DLIG --><!-- /DLIG --><!-- /DLIG --><!-- /DLIG --><!-- /DLIG --><!-- /DLIG --><!-- /DLIG -->
+<!-- HIST --><!-- HIST --><!-- HIST --><!-- HIST --><!-- HIST --><!-- HIST --><!-- HIST --><!-- HIST --> 
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+    <input id="checkbox21" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txthist>
+            Historical Forms [hist]
+        </txthist>
+    </label>
+    <div class="popup" onclick="hist()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="hist">
+            Some letterforms were in common use in the past, but appear anachronistic today. The best known example is the long form of s; others would include the old Fraktur k. Some fonts include the historical forms as alternates, so they can be used for a ‘period’ effect.
+        </span>
+    </div>
+</div>
+<hist contenteditable="true">
+    <highlighthist>s</highlighthist>
+</hist>
+    
+    
+<script type="text/javascript">
+$('#checkbox21').on('change', function(){
+$('hist').css('font-variant-alternates', this.checked ? 'normal' :   'historical-forms');
+$('hist').css('-moz-font-feature-settings', this.checked ? '"hist" off' :   '"hist" on');
+$('hist').css('-webkit-font-feature-settings', this.checked ? '"hist" off' :   '"hist" on');
+$('hist').css('font-feature-settings', this.checked ? '"hist" off' :   '"hist" on');
+$('hist').css('-o-font-variant-alternates', this.checked ? '"hist" off' :   '"hist" on');
+$('txthist').css('color', this.checked ? '#999' : '#00e500');
+});    
+/* [?] */
+function hist() {
+var popup = document.getElementById("hist");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /HIST --><!-- /HIST --><!-- /HIST --><!-- /HIST --><!-- /HIST --><!-- /HIST --><!-- /HIST --><!-- /HIST -->
+<!-- NUMR --><!-- NUMR --><!-- NUMR --><!-- NUMR --><!-- NUMR --><!-- NUMR --><!-- NUMR --><!-- NUMR -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox11" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtnumr>
+            Numerators [numr]
+        </txtnumr>
+    </label>
+    <div class="popup" onclick="numr()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="numr">
+            Replaces selected figures which precede a slash with numerator figures, and replaces the typographic slash with the fraction slash.
+        </span>
+    </div>
+</div>
+<numr contenteditable="true">
+    H<highlightnumr>0123456789()[] 1/</highlightnumr><br>
+    H<highlightnumr>abcdefghijklmnopqrstuvwxyz</highlightnumr>
+</numr>
+<script type="text/javascript">
+$('#checkbox11').on('change', function(){
+$('numr').css('font-feature-settings', this.checked ? '"numr" off' :   '"numr" on');
+$('numr').css('-moz-font-feature-settings', this.checked ? '"numr" off' :   '"numr" on');
+$('numr').css('-webkit-font-feature-settings', this.checked ? '"numr" off' :   '"numr" on');
+$('numr').css('-ms-font-feature-settings', this.checked ? '"numr" off' :   '"numr" on');
+$('numr').css('-o-font-feature-settings', this.checked ? '"numr" off' :   '"numr" on');
+$('txtnumr').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function numr() {
+var popup = document.getElementById("numr");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /NUMR --><!-- /NUMR --><!-- /NUMR --><!-- /NUMR --><!-- /NUMR --><!-- /NUMR --><!-- /NUMR --><!-- /NUMR -->
+<!-- DNOM --><!-- DNOM --><!-- DNOM --><!-- DNOM --><!-- DNOM --><!-- DNOM --><!-- DNOM --><!-- DNOM -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox12" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtdnom>
+            Denominators [dnom]
+        </txtdnom>
+    </label>
+    <div class="popup" onclick="dnom()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="dnom">
+            Replaces selected figures which follow a slash with denominator figures.
+        </span>
+    </div>
+</div>
+<dnom contenteditable="true">
+    H<highlightdnom>0123456789()[]</highlightdnom><br>
+    H<highlightdnom>abcdefghijklmnopqrstuvwxyz</highlightdnom>
+</dnom>
+<script type="text/javascript">
+$('#checkbox12').on('change', function(){
+$('dnom').css('font-feature-settings', this.checked ? '"dnom" off' :   '"dnom" on');
+$('dnom').css('-moz-font-feature-settings', this.checked ? '"dnom" off' :   '"dnom" on');
+$('dnom').css('-webkit-font-feature-settings', this.checked ? '"dnom" off' :   '"dnom" on');
+$('dnom').css('-ms-font-feature-settings', this.checked ? '"dnom" off' :   '"dnom" on');
+$('dnom').css('-o-font-feature-settings', this.checked ? '"dnom" off' :   '"dnom" on');
+$('txtdnom').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function dnom() {
+var popup = document.getElementById("dnom");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /DNOM --><!-- /DNOM --><!-- /DNOM --><!-- /DNOM --><!-- /DNOM --><!-- /DNOM --><!-- /DNOM --><!-- /DNOM -->
+<!-- FRAC --><!-- FRAC --><!-- FRAC --><!-- FRAC --><!-- FRAC --><!-- FRAC --><!-- FRAC --><!-- FRAC -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox13" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtfrac>
+            Diagonal Fractions [frac]
+        </txtfrac>
+    </label>
+    <div class="popup" onclick="frac()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="frac">
+            Replaces figures separated by a slash with ‘common’ (diagonal) fractions.
+        </span>
+    </div>
+</div>
+<frac contenteditable="true">
+    <highlightfrac>01234/56789</highlightfrac><br>
+    <highlightfrac>1/2</highlightfrac>&thinsp;<highlightfrac>1/3</highlightfrac>&thinsp;<highlightfrac>2/3</highlightfrac>&thinsp;<highlightfrac>1/4</highlightfrac>&thinsp;<highlightfrac>3/4</highlightfrac>&thinsp;<highlightfrac>3/8</highlightfrac>&thinsp;<highlightfrac>5/8</highlightfrac>&thinsp;<highlightfrac>7/8</highlightfrac>
+</frac>
+<script type="text/javascript">
+$('#checkbox13').on('change', function(){
+$('frac').css('font-feature-settings', this.checked ? '"frac" off' :   '"frac" on');
+$('frac').css('-moz-font-feature-settings', this.checked ? '"frac" off' :   '"frac" on');
+$('frac').css('-webkit-font-feature-settings', this.checked ? '"frac" off' :   '"frac" on');
+$('frac').css('-ms-font-feature-settings', this.checked ? '"frac" off' :   '"frac" on');
+$('frac').css('-o-font-feature-settings', this.checked ? '"frac" off' :   '"frac" on');
+$('txtfrac').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function frac() {
+var popup = document.getElementById("frac");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /FRAC --><!-- /FRAC --><!-- /FRAC --><!-- /FRAC --><!-- /FRAC --><!-- /FRAC --><!-- /FRAC --><!-- /FRAC -->
+<!-- SUPS --><!-- SUPS --><!-- SUPS --><!-- SUPS --><!-- SUPS --><!-- SUPS --><!-- SUPS --><!-- SUPS -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox15" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtsups>
+            Superscript/Superiors [sups]
+        </txtsups>
+    </label>
+    <div class="popup" onclick="sups()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="sups">
+            Replaces lining or oldstyle figures with superior figures (primarily for footnote indication), and may replace lowercase letters with superior letters (primarily for abbreviated French titles).
+        </span>
+    </div>
+</div>
+<sups contenteditable="true">
+    H<highlightsups>0123456789+−=()[]</highlightsups><br>
+    H<highlightsups>abcdefghijklmnopqrstuvwxyz</highlightsups>
+</sups>
+<script type="text/javascript">
+$('#checkbox15').on('change', function(){
+$('sups').css('font-feature-settings', this.checked ? '"sups" off' :   '"sups" on');
+$('sups').css('-moz-font-feature-settings', this.checked ? '"sups" off' :   '"sups" on');
+$('sups').css('-webkit-font-feature-settings', this.checked ? '"sups" off' :   '"sups" on');
+$('sups').css('-ms-font-feature-settings', this.checked ? '"sups" off' :   '"sups" on');
+$('sups').css('-o-font-feature-settings', this.checked ? '"sups" off' :   '"sups" on');
+$('txtsups').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function sups() {
+var popup = document.getElementById("sups");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /SUPS --><!-- /SUPS --><!-- /SUPS --><!-- /SUPS --><!-- /SUPS --><!-- /SUPS --><!-- /SUPS --><!-- /SUPS -->
+<!-- SUBS --><!-- SUBS --><!-- SUBS --><!-- SUBS --><!-- SUBS --><!-- SUBS --><!-- SUBS --><!-- SUBS -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox16" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtsubs>
+            Subscript/Scientific Inferiors [subs] [sinf]
+        </txtsubs>
+    </label>
+    <div class="popup" onclick="subs()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="subs">
+            The “subs” feature may replace a default glyph with a subscript glyph.
+        </span>
+    </div>
+</div>
+<subs contenteditable="true">
+    H<highlightsubs>0123456789+−=()[]</highlightsubs><br>
+    H<highlightsubs>abcdefghijklmnopqrstuvwxyz</highlightsubs>
+</subs>
+<script type="text/javascript">
+$('#checkbox16').on('change', function(){
+$('subs').css('font-feature-settings', this.checked ? '"subs" off' :   '"subs" on');
+$('subs').css('-moz-font-feature-settings', this.checked ? '"subs" off' :   '"subs" on');
+$('subs').css('-webkit-font-feature-settings', this.checked ? '"subs" off' :   '"subs" on');
+$('subs').css('-ms-font-feature-settings', this.checked ? '"subs" off' :   '"subs" on');
+$('subs').css('-o-font-feature-settings', this.checked ? '"subs" off' :   '"subs" on');
+$('txtsubs').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function subs() {
+var popup = document.getElementById("subs");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /SUBS --><!-- /SUBS --><!-- /SUBS --><!-- /SUBS --><!-- /SUBS --><!-- /SUBS --><!-- /SUBS --><!-- /SUBS -->
+<!-- ORDN --><!-- ORDN --><!-- ORDN --><!-- ORDN --><!-- ORDN --><!-- ORDN --><!-- ORDN --><!-- ORDN -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox17" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtordn>
+            Ordinals [ordn]
+        </txtordn>
+    </label>
+    <div class="popup" onclick="ordn()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="ordn">
+            Replaces default alphabetic glyphs with the corresponding ordinal forms for use after figures.
+        </span>
+    </div>
+</div>
+<ordn contenteditable="true">
+    <highlightordn>2a 2o 2nd 2e</highlightordn><br>
+</ordn>
+<script type="text/javascript">
+$('#checkbox17').on('change', function(){
+$('ordn').css('font-feature-settings', this.checked ? '"ordn" off' :   '"ordn" on');
+$('ordn').css('-moz-font-feature-settings', this.checked ? '"ordn" off' :   '"ordn" on');
+$('ordn').css('-webkit-font-feature-settings', this.checked ? '"ordn" off' :   '"ordn" on');
+$('ordn').css('-ms-font-feature-settings', this.checked ? '"ordn" off' :   '"ordn" on');
+$('ordn').css('-o-font-feature-settings', this.checked ? '"ordn" off' :   '"ordn" on');
+$('txtordn').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function ordn() {
+var popup = document.getElementById("ordn");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /ORDN --><!-- /ORDN --><!-- /ORDN --><!-- /ORDN --><!-- /ORDN --><!-- /ORDN --><!-- /ORDN --><!-- /ORDN -->
+<!-- ZERO --><!-- ZERO --><!-- ZERO --><!-- ZERO --><!-- ZERO --><!-- ZERO --><!-- ZERO --><!-- ZERO -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkbox18" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtzero>
+            Slashed Zero [zero]
+        </txtzero>
+    </label>
+    <div class="popup" onclick="zero()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="zero">
+            This features triggers an alternative form for the “zero” figure which uses a diagonal slash through the counter. This feature allows the user to change from the default 0 to a slashed form.
+        </span>
+    </div>
+</div>
+<zero contenteditable="true">
+    198<highlightzero>0</highlightzero> <span style='font-variant-numeric:tabular-nums;'>198<highlightzero>0</highlightzero></span> <span style='font-variant-numeric:oldstyle-nums;'>198<highlightzero>0</highlightzero></span> <span style='font-variant-numeric:tabular-nums oldstyle-nums;'>198<highlightzero>0</highlightzero></span></zero>
+<script type="text/javascript">
+$('#checkbox18').on('change', function(){
+$('zero').css('font-feature-settings', this.checked ? '"zero" off' :   '"zero" on');
+$('zero').css('-moz-font-feature-settings', this.checked ? '"zero" off' :   '"zero" on');
+$('zero').css('-webkit-font-feature-settings', this.checked ? '"zero" off' :   '"zero" on');
+$('zero').css('-ms-font-feature-settings', this.checked ? '"zero" off' :   '"zero" on');
+$('zero').css('-o-font-feature-settings', this.checked ? '"zero" off' :   '"zero" on');
+$('txtzero').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function zero() {
+var popup = document.getElementById("zero");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /ZERO --><!-- /ZERO --><!-- /ZERO --><!-- /ZERO --><!-- /ZERO --><!-- /ZERO --><!-- /ZERO --><!-- /ZERO -->
+<!-- SALT --><!-- SALT --><!-- SALT --><!-- SALT --><!-- SALT --><!-- SALT --><!-- SALT --><!-- SALT -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkboxss01" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtss01>
+            Stylistic Set 1 [ss01] [salt]
+        </txtss01>
+    </label>
+    <div class="popup" onclick="ss01()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="ss01">
+            Stylistic sets trigger some glyphs that may be designed to harmonise visually, interact in particular ways, or otherwise work together.
+        </span>
+    </div>
+</div>
+<ss01 contenteditable="true">
+    <highlightss01>s</highlightss01>
+</ss01>
+<script type="text/javascript">
+$('#checkboxss01').on('change', function(){
+$('ss01').css('font-feature-settings', this.checked ? '"ss01" off' :   '"ss01" on');
+$('ss01').css('-moz-font-feature-settings', this.checked ? '"ss01" off' :   '"ss01" on');
+$('ss01').css('-webkit-font-feature-settings', this.checked ? '"ss01" off' :   '"ss01" on');
+$('ss01').css('-ms-font-feature-settings', this.checked ? '"ss01" off' :   '"ss01" on');
+$('ss01').css('-o-font-feature-settings', this.checked ? '"ss01" off' :   '"ss01" on');
+$('txtss01').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function ss01() {
+var popup = document.getElementById("ss01");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /SALT --><!-- /SALT --><!-- /SALT --><!-- /SALT --><!-- /SALT --><!-- /SALT --><!-- /SALT --><!-- /SALT -->
+<!-- SS06 --><!-- SS06 --><!-- SS06 --><!-- SS06 --><!-- SS06 --><!-- SS06 --><!-- SS06 --><!-- SS06 -->
+<div class="filet">
+</div>
+<div>
+    <label class="switch">
+        <input id="checkboxss06" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtss06>
+            Stylistic Set 6 [ss06]
+        </txtss06>
+    </label>
+    <div class="popup" onclick="ss06()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="ss06">
+            Stylistic sets trigger some glyphs that may be designed to harmonise visually, interact in particular ways, or otherwise work together.
+        </span>
+    </div>
+</div>
+<ss06 contenteditable="true">
+    1<highlightss06>+</highlightss06>2<highlightss06>−</highlightss06>3<highlightss06>×</highlightss06>4<highlightss06>÷</highlightss06>5<highlightss06>=</highlightss06>6<highlightss06>¬</highlightss06>7<highlightss06>±</highlightss06>8<highlightss06>∞</highlightss06>9<highlightss06>≈</highlightss06>10<highlightss06>≠</highlightss06>11
+</ss06>
+<script type="text/javascript">
+$('#checkboxss06').on('change', function(){
+$('ss06').css('font-feature-settings', this.checked ? '"ss06" off' :   '"ss06" on');
+$('ss06').css('-moz-font-feature-settings', this.checked ? '"ss06" off' :   '"ss06" on');
+$('ss06').css('-webkit-font-feature-settings', this.checked ? '"ss06" off' :   '"ss06" on');
+$('ss06').css('-ms-font-feature-settings', this.checked ? '"ss06" off' :   '"ss06" on');
+$('ss06').css('-o-font-feature-settings', this.checked ? '"ss06" off' :   '"ss06" on');
+$('txtss06').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function ss06() {
+var popup = document.getElementById("ss06");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /SS06 --><!-- /SS06 --><!-- /SS06 --><!-- /SS06 --><!-- /SS06 --><!-- /SS06 --><!-- /SS06 --><!-- /SS06 -->
+
+<!-- SS20 --><!-- SS20 --><!-- SS20 --><!-- SS20 --><!-- SS20 --><!-- SS20 --><!-- SS20 --><!-- SS20 -->
+<div class="filet">
+</div>
+<div>            
+    <label class="switch">
+        <input id="checkboxss20" type="checkbox">
+        <div class="slider round" >
+        </div>
+        <txtss20>
+            stylistic set 20 [ss20]
+        </txtss20>
+    </label>
+    <div class="popup" onclick="ss20()">
+        <a class="infolink"></a>
+        <span class="popuptext" id="ss20">
+            Stylistic sets trigger some glyphs that may be designed to harmonise visually, interact in particular ways, or otherwise work together.
+        </span>
+    </div>
+</div>
+<ss20 contenteditable="true">
+    <highlightss20>1x2</highlightss20>
+</ss20>
+<script type="text/javascript">
+$('#checkboxss20').on('change', function(){
+$('ss20').css('font-feature-settings', this.checked ? '"ss20" off' :   '"ss20" on');
+$('ss20').css('-moz-font-feature-settings', this.checked ? '"ss20" off' :   '"ss20" on');
+$('ss20').css('-webkit-font-feature-settings', this.checked ? '"ss20" off' :   '"ss20" on');
+$('ss20').css('-ms-font-feature-settings', this.checked ? '"ss20" off' :   '"ss20" on');
+$('ss20').css('-o-font-feature-settings', this.checked ? '"ss20" off' :   '"ss20" on');
+$('txtss20').css('color', this.checked ? '#999' : '#00e500');
+});
+/* [?] */
+function ss20() {
+var popup = document.getElementById("ss20");
+popup.classList.toggle("show");
+}
+</script>
+<!-- /SS20 --><!-- /SS20 --><!-- /SS20 --><!-- /SS20 --><!-- /SS20 --><!-- /SS20 --><!-- /SS20 --><!-- /SS20 -->
+<hr style="border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.3); margin-after:0px;">
+
+</div>    
+<div class="txt" style="width:800px; margin-top:5px;">
+    © 1998—2018 Optimo Sàrl 
+</div>
+
+
+    
+<!-- SCRIPT FOR TAB MENU -->        
+    <script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    </script>
+
+<!-- SCRIPT FOR CHARACTER MAP -->        
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();   
+
+        $('.cell').click(function(e) {
+        e.preventDefault();
+    });
+
+    });
+    </script>
+</body>
+</html> 
+
+
+
+
+
+
