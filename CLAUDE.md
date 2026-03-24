@@ -1,3 +1,5 @@
+@../ethos-design-system/CLAUDE.md
+
 # Policy Owner POC — Project Context
 
 ## What this is
