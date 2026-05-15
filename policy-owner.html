@@ -1096,7 +1096,12 @@
     (function () {
       try {
         const auth = JSON.parse(sessionStorage.getItem('ethosAuth') || 'null');
-        if (!auth || !auth.ok) window.location.replace('login.html');
+        if (!auth || !auth.ok) {
+          window.location.replace('login.html');
+        } else {
+          // Consume the token immediately — refresh, tab close, or new session all require re-login
+          sessionStorage.removeItem('ethosAuth');
+        }
       } catch (e) {
         window.location.replace('login.html');
       }
