@@ -1096,7 +1096,7 @@
     (function () {
       try {
         const auth = JSON.parse(sessionStorage.getItem('ethosAuth') || 'null');
-        if (!auth || !auth.email) window.location.replace('login.html');
+        if (!auth || !auth.ok) window.location.replace('login.html');
       } catch (e) {
         window.location.replace('login.html');
       }
