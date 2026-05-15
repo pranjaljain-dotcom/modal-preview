@@ -1090,6 +1090,18 @@
   </main>
 
   <script>
+    /* ── Auth gate ──────────────────────────────────────────
+       Redirect to login if no valid ethosAuth session exists.
+    ═══════════════════════════════════════════════════════ */
+    (function () {
+      try {
+        const auth = JSON.parse(sessionStorage.getItem('ethosAuth') || 'null');
+        if (!auth || !auth.email) window.location.replace('login.html');
+      } catch (e) {
+        window.location.replace('login.html');
+      }
+    }());
+
     /* ═══════════════════════════════════════════════════════
        SHARED CONSTANTS & HELPERS
     ═══════════════════════════════════════════════════════ */

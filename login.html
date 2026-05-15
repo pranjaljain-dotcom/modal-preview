@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Sign in — Ethos Agent Portal</title>
+  <style>
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Light.otf') format('opentype');
+      font-weight: 300; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Regular.otf') format('opentype');
+      font-weight: 400; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Medium.otf') format('opentype');
+      font-weight: 500; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('Theinhardt/Theinhardt-Bold.otf') format('opentype');
+      font-weight: 700; font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Theinhardt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── Full-page layout ─────────────────────────────── */
+    .auth-page {
+      min-height: 100vh;
+      background: linear-gradient(-70.43deg, #e6f5ec 0%, #ebf0f9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .auth-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .auth-logo img {
+      height: 20px;
+      width: 83px;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    /* ── Card ─────────────────────────────────────────── */
+    .auth-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.06), 0px 1px 3px rgba(16,24,40,0.1);
+    }
+
+    /* ── Step containers ──────────────────────────────── */
+    .auth-step {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .auth-step.entering {
+      animation: fadeSlideUp 0.25s ease both;
+    }
+
+    /* ── Headings ─────────────────────────────────────── */
+    .auth-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .auth-title {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 32px;
+      color: #272727;
+      letter-spacing: -0.24px;
+    }
+    .auth-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #525252;
+    }
+    .auth-subtitle strong {
+      font-weight: 500;
+      color: #272727;
+    }
+
+    /* ── Field ────────────────────────────────────────── */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .field-label {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #525252;
+    }
+    .text-input {
+      height: 56px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      padding: 16px 14px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #272727;
+      background: #fff;
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .text-input::placeholder { color: #7e7e7e; }
+    .text-input:focus {
+      border-color: #056257;
+      box-shadow: 0px 1px 2px rgba(16,24,40,0.05), 0 0 0 4px rgba(5,98,87,0.12);
+    }
+
+    /* ── Error message ────────────────────────────────── */
+    .error-msg {
+      font-size: 13px;
+      color: #d92d20;
+      line-height: 20px;
+    }
+
+    /* ── Primary button ───────────────────────────────── */
+    .btn-continue {
+      width: 100%;
+      height: 60px;
+      background: #272727;
+      border: 1px solid #272727;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .btn-continue:hover:not(:disabled):not(.btn-loading) { background: #3a3a3a; }
+    .btn-continue:disabled,
+    .btn-continue.btn-loading {
+      background: #d4d4d4;
+      border-color: #d4d4d4;
+      color: #525252;
+      cursor: not-allowed;
+    }
+
+    /* Spinner inside button */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn-spinner {
+      width: 20px; height: 20px;
+      border: 2px solid rgba(82,82,82,0.3);
+      border-top-color: #525252;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    /* ── OTP boxes ────────────────────────────────────── */
+    .otp-inputs { display: flex; gap: 8px; }
+    .otp-box {
+      flex: 1 0 0;
+      min-width: 0;
+      height: 62px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 400;
+      color: #272727;
+      font-family: inherit;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .otp-box:focus {
+      border-color: #056257;
+      box-shadow: 0 0 0 4px rgba(5,98,87,0.12);
+    }
+    .otp-box.error {
+      border-color: #d92d20;
+      box-shadow: 0 0 0 4px rgba(217,45,32,0.12);
+    }
+
+    /* ── Bottom actions (resend, back) ────────────────── */
+    .otp-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .resend-row {
+      font-size: 14px;
+      line-height: 20px;
+      color: #7e7e7e;
+      text-align: center;
+    }
+    .resend-link {
+      color: #056257;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: underline;
+      font-family: inherit;
+      background: none;
+      border: none;
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0;
+    }
+    .resend-link:disabled { opacity: 0.5; cursor: not-allowed; }
+    .back-link {
+      font-size: 14px;
+      line-height: 20px;
+      color: #525252;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      text-decoration: underline;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-center">
+
+      <!-- Ethos logo -->
+      <div class="auth-logo">
+        <img src="icons/82084956-24dc-4ef4-915e-75495b6d32dd.svg" alt="Ethos" />
+      </div>
+
+      <div class="auth-card">
+
+        <!-- ── STEP 1: Email ───────────────────────────── -->
+        <div class="auth-step" id="step-email">
+          <div class="auth-heading">
+            <h1 class="auth-title">Sign in to continue</h1>
+            <p class="auth-subtitle">Enter your Ethos email address and we'll send you a one-time code.</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="auth-email">Work email</label>
+            <input
+              class="text-input"
+              id="auth-email"
+              type="email"
+              placeholder="you@getethos.com"
+              autocomplete="email"
+              inputmode="email"
+            />
+            <p class="error-msg" id="email-error" style="display:none;"></p>
+          </div>
+
+          <button class="btn-continue" id="btn-send-otp">Send OTP to email</button>
+        </div>
+
+        <!-- ── STEP 2: OTP (hidden initially) ─────────── -->
+        <div class="auth-step" id="step-otp" style="display:none;">
+          <div class="auth-heading">
+            <h1 class="auth-title">Check your inbox</h1>
+            <p class="auth-subtitle">We sent a 6-digit code to <strong id="otp-sent-email"></strong>. Enter it below — it expires in 10 minutes.</p>
+          </div>
+
+          <div>
+            <div class="otp-inputs" id="otp-inputs">
+              <input class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code" />
+              <input class="otp-box" maxlength="1" inputmode="numeric" />
+              <input class="otp-box" maxlength="1" inputmode="numeric" />
+              <input class="otp-box" maxlength="1" inputmode="numeric" />
+              <input class="otp-box" maxlength="1" inputmode="numeric" />
+              <input class="otp-box" maxlength="1" inputmode="numeric" />
+            </div>
+            <p class="error-msg" id="otp-error" style="display:none; margin-top:8px;"></p>
+          </div>
+
+          <button class="btn-continue" id="btn-verify-otp">Verify code</button>
+
+          <div class="otp-footer">
+            <div class="resend-row">
+              <span id="resend-timer"></span>
+              <button class="resend-link" id="btn-resend" style="display:none;">Resend code</button>
+            </div>
+            <button class="back-link" id="btn-back-email">Use a different email</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════
+       EMAILJS CONFIG
+       ─────────────────────────────────────────────────────
+       Setup steps:
+       1. Sign up at https://emailjs.com (free — 200 emails/month)
+       2. Add an Email Service (Gmail, Outlook, etc.) → copy the Service ID
+       3. Create an Email Template. Use these variables:
+            To Email field : {{to_email}}
+            Subject        : Your Ethos access code: {{otp_code}}
+            Body           : Your one-time code is {{otp_code}}. It expires in 10 minutes.
+          Copy the Template ID.
+       4. Go to Account → API Keys → copy your Public Key
+       5. Replace the three placeholder strings below, then push.
+    ═══════════════════════════════════════════════════════ */
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // Account → API Keys
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // Email Services tab
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // Email Templates tab
+
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+    /* ── Redirect if already authenticated ─────────────── */
+    try {
+      const auth = JSON.parse(sessionStorage.getItem('ethosAuth') || 'null');
+      if (auth && auth.email) window.location.replace('policy-owner.html');
+    } catch (e) {}
+
+    /* ── DOM refs ───────────────────────────────────────── */
+    const stepEmail   = document.getElementById('step-email');
+    const stepOtp     = document.getElementById('step-otp');
+    const emailInput  = document.getElementById('auth-email');
+    const emailError  = document.getElementById('email-error');
+    const otpSentEl   = document.getElementById('otp-sent-email');
+    const otpBoxes    = Array.from(document.querySelectorAll('.otp-box'));
+    const otpError    = document.getElementById('otp-error');
+    const btnSend     = document.getElementById('btn-send-otp');
+    const btnVerify   = document.getElementById('btn-verify-otp');
+    const btnResend   = document.getElementById('btn-resend');
+    const btnBack     = document.getElementById('btn-back-email');
+    const resendTimer = document.getElementById('resend-timer');
+
+    let resendInterval = null;
+
+    /* ── Helpers ────────────────────────────────────────── */
+    function showError(el, msg) { el.textContent = msg; el.style.display = 'block'; }
+    function clearError(el) { el.textContent = ''; el.style.display = 'none'; }
+
+    function setLoading(btn, loading, label) {
+      if (loading) {
+        btn.disabled = true;
+        btn.classList.add('btn-loading');
+        btn._savedLabel = btn.textContent;
+        btn.innerHTML = '<div class="btn-spinner"></div>';
+      } else {
+        btn.disabled = false;
+        btn.classList.remove('btn-loading');
+        btn.textContent = label || btn._savedLabel || btn.textContent;
+      }
+    }
+
+    function showStep(name) {
+      if (name === 'otp') {
+        stepEmail.style.display = 'none';
+        stepOtp.style.display = 'flex';
+        stepOtp.classList.add('entering');
+        stepOtp.addEventListener('animationend', () => stepOtp.classList.remove('entering'), { once: true });
+        setTimeout(() => otpBoxes[0].focus(), 50);
+      } else {
+        stepOtp.style.display = 'none';
+        stepEmail.style.display = 'flex';
+        stepEmail.classList.add('entering');
+        stepEmail.addEventListener('animationend', () => stepEmail.classList.remove('entering'), { once: true });
+        setTimeout(() => emailInput.focus(), 50);
+      }
+    }
+
+    /* ── Resend countdown ───────────────────────────────── */
+    function startResendTimer() {
+      btnResend.style.display = 'none';
+      let secs = 60;
+      resendTimer.textContent = `Resend in 0:${String(secs).padStart(2, '0')}`;
+      clearInterval(resendInterval);
+      resendInterval = setInterval(() => {
+        secs--;
+        if (secs <= 0) {
+          clearInterval(resendInterval);
+          resendTimer.textContent = '';
+          btnResend.style.display = 'inline';
+        } else {
+          resendTimer.textContent = `Resend in 0:${String(secs).padStart(2, '0')}`;
+        }
+      }, 1000);
+    }
+
+    /* ── OTP boxes: auto-advance, backspace, paste ──────── */
+    otpBoxes.forEach((box, i) => {
+      box.addEventListener('input', e => {
+        const val = e.target.value.replace(/\D/g, '');
+        e.target.value = val.slice(-1);
+        box.classList.remove('error');
+        clearError(otpError);
+        if (val && i < otpBoxes.length - 1) otpBoxes[i + 1].focus();
+      });
+      box.addEventListener('keydown', e => {
+        if (e.key === 'Backspace' && !box.value && i > 0) otpBoxes[i - 1].focus();
+      });
+      box.addEventListener('paste', e => {
+        e.preventDefault();
+        const pasted = (e.clipboardData || window.clipboardData)
+          .getData('text').replace(/\D/g, '').slice(0, 6);
+        pasted.split('').forEach((ch, j) => { if (otpBoxes[j]) otpBoxes[j].value = ch; });
+        const next = otpBoxes.findIndex(b => !b.value);
+        (next >= 0 ? otpBoxes[next] : otpBoxes[5]).focus();
+      });
+    });
+
+    /* ── Generate + send OTP ────────────────────────────── */
+    async function sendOtp(email) {
+      const otp = String(Math.floor(100000 + Math.random() * 900000));
+      sessionStorage.setItem('_pendingOtp', JSON.stringify({
+        code: otp,
+        email,
+        expires: Date.now() + 10 * 60 * 1000
+      }));
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        to_email: email,
+        otp_code: otp
+      });
+    }
+
+    /* ── SEND button ────────────────────────────────────── */
+    btnSend.addEventListener('click', async () => {
+      clearError(emailError);
+      emailInput.style.borderColor = '';
+      emailInput.style.boxShadow = '';
+
+      const email = emailInput.value.trim().toLowerCase();
+
+      if (!email) {
+        showError(emailError, 'Please enter your work email.');
+        emailInput.style.borderColor = '#d92d20';
+        emailInput.style.boxShadow = '0 0 0 4px rgba(217,45,32,0.12)';
+        emailInput.focus();
+        return;
+      }
+      if (!email.endsWith('@getethos.com')) {
+        showError(emailError, 'Only @getethos.com email addresses are allowed.');
+        emailInput.style.borderColor = '#d92d20';
+        emailInput.style.boxShadow = '0 0 0 4px rgba(217,45,32,0.12)';
+        emailInput.focus();
+        return;
+      }
+
+      emailInput.addEventListener('input', () => {
+        emailInput.style.borderColor = '';
+        emailInput.style.boxShadow = '';
+        clearError(emailError);
+      }, { once: true });
+
+      setLoading(btnSend, true);
+      try {
+        await sendOtp(email);
+        otpSentEl.textContent = email;
+        showStep('otp');
+        startResendTimer();
+      } catch (err) {
+        console.error('[emailjs] send failed', err);
+        showError(emailError, 'Could not send code. Please try again.');
+      } finally {
+        setLoading(btnSend, false, 'Send OTP to email');
+      }
+    });
+
+    /* ── VERIFY button ──────────────────────────────────── */
+    btnVerify.addEventListener('click', () => {
+      clearError(otpError);
+      otpBoxes.forEach(b => b.classList.remove('error'));
+
+      const entered = otpBoxes.map(b => b.value).join('');
+      if (entered.length < 6) {
+        otpBoxes.forEach(b => { if (!b.value) b.classList.add('error'); });
+        showError(otpError, 'Please enter all 6 digits.');
+        return;
+      }
+
+      let pending;
+      try { pending = JSON.parse(sessionStorage.getItem('_pendingOtp') || 'null'); } catch { pending = null; }
+
+      if (!pending) {
+        showError(otpError, 'Session expired. Please request a new code.');
+        return;
+      }
+      if (Date.now() > pending.expires) {
+        otpBoxes.forEach(b => b.classList.add('error'));
+        showError(otpError, 'This code has expired. Please request a new one.');
+        return;
+      }
+      if (entered !== pending.code) {
+        otpBoxes.forEach(b => b.classList.add('error'));
+        showError(otpError, 'Incorrect code. Please try again.');
+        otpBoxes[0].focus();
+        return;
+      }
+
+      // ✓ Authenticated
+      sessionStorage.removeItem('_pendingOtp');
+      sessionStorage.setItem('ethosAuth', JSON.stringify({ email: pending.email, time: Date.now() }));
+      window.location.replace('policy-owner.html');
+    });
+
+    /* ── RESEND button ──────────────────────────────────── */
+    btnResend.addEventListener('click', async () => {
+      clearError(otpError);
+      otpBoxes.forEach(b => { b.value = ''; b.classList.remove('error'); });
+
+      let pending;
+      try { pending = JSON.parse(sessionStorage.getItem('_pendingOtp') || 'null'); } catch { pending = null; }
+      const email = pending?.email || emailInput.value.trim().toLowerCase();
+
+      btnResend.disabled = true;
+      try {
+        await sendOtp(email);
+        startResendTimer();
+        otpBoxes[0].focus();
+      } catch (err) {
+        showError(otpError, 'Could not resend code. Please try again.');
+        btnResend.disabled = false;
+      }
+    });
+
+    /* ── BACK link ──────────────────────────────────────── */
+    btnBack.addEventListener('click', () => {
+      clearInterval(resendInterval);
+      sessionStorage.removeItem('_pendingOtp');
+      otpBoxes.forEach(b => { b.value = ''; b.classList.remove('error'); });
+      clearError(otpError);
+      showStep('email');
+    });
+
+    /* ── Enter key on email input ───────────────────────── */
+    emailInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') btnSend.click();
+    });
+  </script>
+
+</body>
+</html>
